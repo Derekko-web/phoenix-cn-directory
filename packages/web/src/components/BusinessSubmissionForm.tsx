@@ -10,6 +10,7 @@ import {
   CheckCircleIcon,
   BuildingStorefrontIcon,
   MapPinIcon,
+  PhoneIcon,
   ClockIcon,
   CameraIcon,
   EyeIcon
@@ -44,7 +45,7 @@ const STEPS = [
   },
   { 
     key: 'contact', 
-    icon: 'ContactIcon', 
+    icon: PhoneIcon, 
     titleKey: 'steps.contact',
     descriptionKey: 'steps.contactDescription'
   },
@@ -163,7 +164,7 @@ export function BusinessSubmissionForm({ locale }: BusinessSubmissionFormProps) 
     try {
       // Clean up the form data for API submission
       const submissionData = {
-        status: formData.status,
+        status: formData.status.toLowerCase() as 'pending' | 'approved' | 'rejected',
         localized: formData.localized.filter(l => l.name.trim() !== ''),
         contact: formData.contact,
         location: formData.location,
@@ -171,13 +172,26 @@ export function BusinessSubmissionForm({ locale }: BusinessSubmissionFormProps) 
         categoryIds: formData.categories.map(c => c.id)
       };
 
-      const business = await businessApi.createBusiness(submissionData);
+      // Call business creation API endpoint
+      const response = await fetch('/api/businesses', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create business');
+      }
+
+      const business = await response.json();
       
       // Redirect to success page or the created business
       router.push(`/${locale}/business/${business.slug}?submitted=true`);
       
     } catch (error) {
-      console.error('Submission error:', error);
+      
       setSubmissionError(error instanceof Error ? error.message : t('errors.submitFailed'));
     } finally {
       setIsSubmitting(false);

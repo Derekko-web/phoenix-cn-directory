@@ -7,12 +7,12 @@ export const HeroSection = () => {
   const t = useTranslations('home');
 
   return (
-    <div className="relative min-h-[70vh] flex items-center justify-center chinese-pattern overflow-hidden">
+    <section className="relative min-h-[70vh] flex items-center justify-center chinese-pattern overflow-hidden" role="banner">
       {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-chinese-red-500/10 via-chinese-gold-500/5 to-chinese-jade-500/10" />
+      <div className="absolute inset-0 bg-gradient-to-br from-chinese-red-500/10 via-chinese-gold-500/5 to-chinese-jade-500/10" aria-hidden="true" />
       
       {/* Floating decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <motion.div
           className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-r from-chinese-red-500/20 to-chinese-gold-500/20 rounded-full blur-xl"
           animate={{
@@ -135,11 +135,12 @@ export const HeroSection = () => {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        aria-hidden="true"
       >
         <div className="w-6 h-10 border-2 border-chinese-red-300 rounded-full flex justify-center">
           <div className="w-1 h-3 bg-chinese-red-400 rounded-full mt-2 animate-pulse" />
         </div>
       </motion.div>
-    </div>
+    </section>
   );
 };

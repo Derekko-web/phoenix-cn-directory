@@ -46,7 +46,7 @@ export function BusinessGrid({ locale, searchParams }: BusinessGridProps) {
         setError(null);
         
         const response = await businessApi.getBusinesses({
-          status: 'approved',
+          
           category: searchParams?.category,
           search: searchParams?.search,
           city: searchParams?.city,

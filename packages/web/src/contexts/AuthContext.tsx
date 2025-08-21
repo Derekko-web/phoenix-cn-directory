@@ -29,7 +29,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setUser(storedUser);
         }
       } catch (error) {
-        console.error('Auth initialization error:', error);
+        // Auth initialization error - token cleared
         authApi.logout();
       } finally {
         setLoading(false);

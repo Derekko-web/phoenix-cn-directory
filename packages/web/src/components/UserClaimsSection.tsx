@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { useLocale } from 'next-intl';
 
 interface Claim {
   id: string;
@@ -19,8 +19,7 @@ interface Claim {
 export default function UserClaimsSection() {
   const [claims, setClaims] = useState<Claim[]>([]);
   const [loading, setLoading] = useState(true);
-  const pathname = usePathname();
-  const currentLocale = pathname.startsWith('/zh') ? 'zh' : 'en';
+  const currentLocale = useLocale() as 'en' | 'zh';
 
   useEffect(() => {
     const fetchClaims = async () => {
@@ -42,7 +41,7 @@ export default function UserClaimsSection() {
           setClaims(data);
         }
       } catch (error) {
-        console.error('Failed to fetch claims:', error);
+        
       } finally {
         setLoading(false);
       }

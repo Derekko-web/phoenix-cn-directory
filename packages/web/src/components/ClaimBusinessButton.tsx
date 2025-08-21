@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { useLocale } from 'next-intl';
 import { useAuth } from '../contexts/AuthContext';
 
 interface ClaimBusinessButtonProps {
@@ -21,8 +21,7 @@ export default function ClaimBusinessButton({
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
   const { isAuthenticated, user } = useAuth();
-  const pathname = usePathname();
-  const currentLocale = pathname.startsWith('/zh') ? 'zh' : 'en';
+  const currentLocale = useLocale() as 'en' | 'zh';
 
   if (!isAuthenticated || isOwned) {
     return null;

@@ -95,7 +95,7 @@ export default async function BusinessPage({ params }: BusinessPageProps) {
       </div>
     );
   } catch (error) {
-    console.error('Error fetching business:', error);
+    
     notFound();
   }
 }

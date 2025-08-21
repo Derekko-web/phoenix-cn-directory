@@ -18,16 +18,23 @@ pnpm install
 docker-compose up -d
 ```
 This starts:
-- PostgreSQL on port 5433
+- PostgreSQL on port 5433 (to avoid conflicts with system PostgreSQL)
 - Redis on port 6379  
-- OpenSearch on port 9200
-- MinIO on port 9000
+- OpenSearch on port 9200 (search functionality)
+- MinIO on port 9000 (file storage)
 
 ### 3. Set Up Database
 ```bash
+# From project root:
+pnpm --filter api db:generate
+pnpm --filter api db:push
+pnpm --filter api db:seed
+
+# Or from packages/api directory:
 cd packages/api
-npx prisma db push --accept-data-loss
-npx prisma generate
+pnpm db:generate
+pnpm db:push
+pnpm db:seed
 ```
 
 ### 4. Configure Environment Variables
@@ -51,24 +58,40 @@ FRONTEND_URL="http://localhost:3000"
 ```
 
 #### Frontend Environment (`packages/web/.env.local`)
+**Create this file if it doesn't exist:**
 ```bash
 NEXT_PUBLIC_API_URL=http://localhost:4000
 ```
 
 ### 5. Start the Applications
 
-#### Frontend (Working ✅)
+#### Method 1: Start All Services (Recommended)
 ```bash
-cd packages/web
-npm run dev
+# From project root - starts both frontend and API
+pnpm dev
+```
+
+#### Method 2: Start Services Individually
+
+**Frontend:**
+```bash
+# From project root:
+pnpm --filter web dev
+
+# Or from packages/web:
+cd packages/web && pnpm dev
 ```
 **Available at:** http://localhost:3000
 
-#### API (Needs TypeScript fixes)
+**API Server:**
 ```bash
-cd packages/api
-npm run dev
+# From project root:
+pnpm --filter api dev
+
+# Or from packages/api:
+cd packages/api && pnpm dev
 ```
+**Available at:** http://localhost:4000
 
 ## 🌟 **Currently Working Features**
 
@@ -93,36 +116,31 @@ npm run dev
 - **Register:** http://localhost:3000/en/register  
 - **Dashboard:** http://localhost:3000/en/dashboard (redirects to login)
 
-## 🔧 **API Server Issues**
+## ⚠️ **Known Issues & Solutions**
 
-The API has some pre-existing TypeScript errors in non-authentication modules:
+### OpenSearch Configuration Issue
+**Problem:** Chinese tokenizer plugin not available in standard OpenSearch
+**Error:** `Unknown tokenizer type [smartcn_tokenizer]`
+**Solution:** Search functionality is disabled until proper Chinese analysis plugin is installed
+**Workaround:** Basic business directory works without search
 
-### Quick Fixes Needed:
-1. **Email Service** - ✅ Already fixed (createTransporter → createTransport)
-2. **Search Service** - Type issues with OpenSearch client
-3. **Photos Service** - Missing businessPhoto model in Prisma
-4. **Business Service** - Status type mismatches
-
-### Workaround Options:
-
-#### Option 1: Minimal API (Authentication Only)
-Use the minimal app.module.ts I created:
+### Port Conflicts
+**Problem:** Port 3000 or 5432 might be in use
+**Solution:**
 ```bash
-cd packages/api
-# The app.module.ts is already set to minimal mode
-npm run dev
+# Kill processes using ports:
+lsof -ti:3000 | xargs kill -9  # Frontend
+lsof -ti:4000 | xargs kill -9  # API
+
+# Or modify ports in docker-compose.yml if needed
 ```
 
-#### Option 2: Fix TypeScript Errors
+### Environment Setup
+Ensure these files exist:
+- `packages/api/.env` (already exists)
+- `packages/web/.env.local` (create if needed):
 ```bash
-# Comment out problematic modules in app.module.ts temporarily
-# Then gradually fix each service
-```
-
-#### Option 3: Skip Type Checking
-```bash
-# Build ignoring TypeScript errors
-npm run build --skipLibCheck
+echo "NEXT_PUBLIC_API_URL=http://localhost:4000" > packages/web/.env.local
 ```
 
 ## 🎯 **What's Fully Implemented and Working**

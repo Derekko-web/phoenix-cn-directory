@@ -9,8 +9,9 @@
   "nav": {
     "home": "Home",
     "businesses": "Businesses",
-    "events": "Events",
-    "about": "About"
+    "categories": "Categories",
+    "services": "Services",
+    "community": "Community"
   },
   "home": {
     "title": "Phoenix Chinese Directory",
@@ -140,9 +141,18 @@
     "subtitle": "Join the Phoenix Chinese Directory and connect with your community",
     "metaTitle": "Submit Your Business | Phoenix Chinese Directory",
     "metaDescription": "Add your Chinese business to our directory and reach more customers in the Phoenix area.",
+    "hero": {
+      "title": "List Your Business",
+      "subtitle": "Reach thousands of customers in the Phoenix Chinese community",
+      "benefits": {
+        "visibility": "Increase your visibility",
+        "customers": "Connect with new customers", 
+        "community": "Join our growing community"
+      }
+    },
     "navigation": {
       "back": "Back",
-      "next": "Next",
+      "next": "Next", 
       "submit": "Submit Business",
       "submitting": "Submitting...",
       "stepCount": "Step {current} of {total}"
@@ -156,13 +166,72 @@
       "contactDescription": "How to reach you",
       "hours": "Hours",
       "hoursDescription": "When you're open",
-      "photos": "Photos", 
+      "photos": "Photos",
       "photosDescription": "Show your business",
       "preview": "Preview",
-      "previewDescription": "Review & submit"
+      "previewDescription": "Review & submit",
+      "basicInfo": {
+        "title": "Tell us about your business",
+        "description": "Start with the basic information that customers need to know",
+        "nameEn": "Business Name (English)",
+        "nameEnPlaceholder": "e.g. Golden Dragon Restaurant",
+        "nameEnHelp": "Enter your business name in English",
+        "nameZh": "Business Name (Chinese)",
+        "nameZhPlaceholder": "例如: 金龙餐厅",
+        "nameZhHelp": "输入您的中文商家名称",
+        "descriptionEn": "Business Description (English)",
+        "descriptionEnPlaceholder": "Describe your business, services, and what makes you special...",
+        "descriptionEnHelp": "Tell customers what your business offers",
+        "descriptionZh": "Business Description (Chinese)",
+        "descriptionZhPlaceholder": "描述您的业务、服务以及特色...",
+        "descriptionZhHelp": "告诉客户您的企业提供什么服务",
+        "categories": "Business Categories",
+        "categoriesHelp": "Select the categories that best describe your business",
+        "selectedCategories": "Selected Categories",
+        "requiredNotice": "Required Fields",
+        "requiredFields": "Fields marked with * are required"
+      }
     },
     "errors": {
       "submitFailed": "Failed to submit business. Please try again."
     }
+  },
+  "categories": {
+    "title": "Business Categories",
+    "subtitle": "Browse all types of businesses and services in the Phoenix Chinese community",
+    "metaTitle": "Business Categories | Phoenix Chinese Directory",
+    "metaDescription": "Browse Chinese businesses by category in Phoenix - restaurants, services, shops and more.",
+    "eatDrink": "Eat & Drink",
+    "groceries": "Groceries & Specialty",
+    "services": "Services",
+    "health": "Health & Wellness",
+    "education": "Education",
+    "community": "Community & Culture",
+    "events": "Events"
+  },
+  "services": {
+    "title": "Professional Services",
+    "subtitle": "Professional service providers in the Phoenix Chinese community offering bilingual expertise",
+    "metaTitle": "Professional Services | Phoenix Chinese Directory",
+    "metaDescription": "Find Chinese-speaking lawyers, accountants, real estate agents and other professionals in Phoenix.",
+    "cta": {
+      "title": "Are you a service provider?",
+      "description": "Join our professional services directory and serve the Phoenix Chinese community",
+      "button": "List Your Services"
+    }
+  },
+  "community": {
+    "title": "Chinese Community",
+    "subtitle": "Connecting the Phoenix Chinese community through culture, events, and resources",
+    "metaTitle": "Community Resources | Phoenix Chinese Directory",
+    "metaDescription": "Stay connected with Phoenix Chinese community events, news, cultural programs and resources.",
+    "upcomingEvents": "Upcoming Events",
+    "cta": {
+      "title": "Join Our Community",
+      "description": "Be part of the Phoenix Chinese Directory community and stay connected with the latest news and events",
+      "createAccount": "Create Account",
+      "addResource": "Add Event or Resource"
+    },
+    "comingSoon": "Coming Soon"
   }
 }

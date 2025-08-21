@@ -19,7 +19,7 @@ echo "📦 Installing dependencies..."
 pnpm install
 
 echo "🐳 Starting Docker services..."
-docker compose up -d
+pnpm docker:up
 
 echo "⏳ Waiting for services to be ready..."
 sleep 10
@@ -27,11 +27,14 @@ sleep 10
 echo "🗄️ Setting up database..."
 cd packages/api
 
-# Copy env file if it doesn't exist
-if [ ! -f ".env" ]; then
-    cp .env.example .env
-    echo "📝 Created .env file"
+# Environment files are already set up, but verify frontend env exists
+cd ../..
+if [ ! -f "packages/web/.env.local" ]; then
+    echo "NEXT_PUBLIC_API_URL=http://localhost:4000" > packages/web/.env.local
+    echo "📝 Created frontend .env.local file"
 fi
+
+cd packages/api
 
 # Generate Prisma client
 echo "🔧 Generating Prisma client..."

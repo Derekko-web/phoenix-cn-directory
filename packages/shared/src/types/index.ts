@@ -1,6 +1,9 @@
 export interface User {
   id: string;
   email: string;
+  firstName?: string;
+  lastName?: string;
+  picture?: string;
   locale: 'en' | 'zh';
   roles: string[];
   createdAt: Date;
@@ -10,10 +13,42 @@ export interface User {
 export interface Business {
   id: string;
   slug: string;
-  status: 'pending' | 'approved' | 'rejected';
+  status: 'PENDING' | 'APPROVED' | 'REJECTED';
   ownerUserId?: string;
+  localized: BusinessLocalized[];
+  contact?: BusinessContact;
+  location?: BusinessLocation;
+  hours?: BusinessHours[];
+  categories?: BusinessCategoryWithCategory[];
+  photos?: BusinessPhoto[];
+  reviews?: BusinessReview[];
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface BusinessCategoryWithCategory {
+  businessId: string;
+  categoryId: string;
+  category: Category;
+}
+
+export interface BusinessPhoto {
+  id: string;
+  businessId: string;
+  url: string;
+  caption?: string;
+  isPrimary: boolean;
+  status: 'PENDING' | 'APPROVED' | 'REJECTED';
+  createdAt: Date;
+}
+
+export interface BusinessReview {
+  id: string;
+  businessId: string;
+  userId: string;
+  rating: number;
+  comment?: string;
+  createdAt: Date;
 }
 
 export interface BusinessLocalized {

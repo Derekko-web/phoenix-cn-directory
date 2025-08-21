@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
+import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 import { useAuth } from '../../../contexts/AuthContext';
 
@@ -13,10 +13,8 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const { login, loginWithGoogle } = useAuth();
   const router = useRouter();
-  const pathname = usePathname();
   const t = useTranslations('auth.login');
-
-  const currentLocale = pathname.startsWith('/zh') ? 'zh' : 'en';
+  const currentLocale = useLocale() as 'en' | 'zh';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -15,7 +15,7 @@ export class BusinessesService {
 
   async findAll(query: BusinessQueryDto) {
     const {
-      status = 'APPROVED' as BusinessStatus,
+      status = BusinessStatus.APPROVED,
       category,
       city,
       state,
@@ -25,74 +25,100 @@ export class BusinessesService {
       search
     } = query;
 
-    const where: any = { status };
+    try {
+      // Ensure limit and offset are numbers
+      const numLimit = typeof limit === 'string' ? parseInt(limit, 10) : limit;
+      const numOffset = typeof offset === 'string' ? parseInt(offset, 10) : offset;
 
-    // Add category filter
-    if (category) {
-      where.categories = {
-        some: {
-          category: {
-            key: category
+      const where: any = { status };
+
+      // Add category filter
+      if (category) {
+        where.categories = {
+          some: {
+            category: {
+              key: category
+            }
           }
-        }
-      };
-    }
+        };
+      }
 
-    // Add location filter
-    if (city) {
-      where.location = { city };
-    }
-    if (state) {
-      where.location = { ...where.location, state };
-    }
+      // Add location filter
+      if (city) {
+        where.location = { city };
+      }
+      if (state) {
+        where.location = { ...where.location, state };
+      }
 
-    // Add search filter across localized names
-    if (search) {
-      where.localized = {
-        some: {
-          OR: [
-            { name: { contains: search, mode: 'insensitive' } },
-            { description: { contains: search, mode: 'insensitive' } }
-          ]
-        }
-      };
-    }
+      // Add search filter across localized names
+      if (search) {
+        where.localized = {
+          some: {
+            OR: [
+              { name: { contains: search, mode: 'insensitive' } },
+              { description: { contains: search, mode: 'insensitive' } }
+            ]
+          }
+        };
+      }
 
-    const [businesses, total] = await Promise.all([
-      this.prisma.business.findMany({
-        where,
-        include: {
-          localized: {
-            where: { lang: locale }
-          },
-          contact: true,
-          location: true,
-          hours: {
-            orderBy: { dayOfWeek: 'asc' }
-          },
-          categories: {
-            include: {
-              category: true
+      // Debug log before executing queries
+      console.log('[BusinessesService.findAll] query', {
+        status,
+        category,
+        city,
+        state,
+        locale,
+        limit: numLimit,
+        offset: numOffset,
+        search
+      });
+
+      const [businesses, total] = await Promise.all([
+        this.prisma.business.findMany({
+          where,
+          include: {
+            localized: {
+              where: { lang: locale }
+            },
+            contact: true,
+            location: true,
+            hours: {
+              orderBy: { dayOfWeek: 'asc' }
+            },
+            categories: {
+              include: {
+                category: true
+              }
+            },
+            photos: {
+              where: { status: 'APPROVED' },
+              take: 3
             }
           },
-          photos: {
-            where: { status: 'APPROVED' },
-            take: 3
-          }
-        },
-        take: limit,
-        skip: offset,
-        orderBy: { createdAt: 'desc' }
-      }),
-      this.prisma.business.count({ where })
-    ]);
+          take: numLimit,
+          skip: numOffset,
+          orderBy: { createdAt: 'desc' }
+        }),
+        this.prisma.business.count({ where })
+      ]);
 
-    return {
-      businesses,
-      total,
-      limit,
-      offset
-    };
+      return {
+        businesses,
+        total,
+        limit: numLimit,
+        offset: numOffset
+      };
+    } catch (e: any) {
+      console.error('[BusinessesService.findAll] error', {
+        name: e?.name,
+        code: e?.code,
+        message: e?.message,
+        meta: e?.meta
+      });
+      throw e;
+    }
   }
 
   async findOne(slug: string, locale = 'en') {

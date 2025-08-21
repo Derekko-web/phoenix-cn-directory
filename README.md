@@ -13,6 +13,15 @@ A bilingual (Chinese/English) local directory for the Phoenix metro area that he
 
 ### Setup
 
+#### Option 1: Automated Setup (Recommended)
+```bash
+git clone https://github.com/Derekko-web/phoenix-cn-directory.git
+cd phoenix-cn-directory
+chmod +x setup.sh
+./setup.sh
+```
+
+#### Option 2: Manual Setup
 1. **Clone the repository**
 ```bash
 git clone https://github.com/Derekko-web/phoenix-cn-directory.git
@@ -31,17 +40,10 @@ pnpm docker:up
 
 4. **Set up the database**
 ```bash
-# Copy environment file
-cp packages/api/.env.example packages/api/.env
-
-# Generate Prisma client
+# Generate Prisma client and set up database
 cd packages/api
 pnpm db:generate
-
-# Push schema to database
 pnpm db:push
-
-# Seed initial data
 pnpm db:seed
 ```
 
@@ -60,7 +62,7 @@ This will start:
 
 When you run `pnpm docker:up`, the following services will be available:
 
-- **PostgreSQL + PostGIS**: localhost:5432
+- **PostgreSQL + PostGIS**: localhost:5433
 - **OpenSearch**: localhost:9200
 - **OpenSearch Dashboards**: localhost:5601 (use `pnpm docker:up --profile dashboard`)
 - **MinIO**: localhost:9000 (Console: localhost:9001)
@@ -144,6 +146,7 @@ pnpm test:cov
 ### Database Operations
 
 ```bash
+# From project root:
 # Reset database (drops and recreates)
 pnpm --filter api db:reset
 
@@ -155,6 +158,16 @@ pnpm --filter api db:push
 
 # Seed database with initial data
 pnpm --filter api db:seed
+
+# Or from packages/api directory:
+# Reset database
+pnpm db:reset
+
+# Generate and push schema
+pnpm db:generate && pnpm db:push
+
+# Seed initial data
+pnpm db:seed
 ```
 
 ### Adding New Categories
@@ -185,19 +198,45 @@ The project includes GitHub Actions for CI/CD:
 
 ## 🛠️ Troubleshooting
 
-### Port Conflicts
-If you encounter port conflicts, you can modify the ports in `docker-compose.yml`.
+### Common Setup Issues
 
-### Database Connection Issues
-Make sure PostgreSQL is running and accessible:
+**Port already in use errors:**
 ```bash
-docker exec phoenix-postgres pg_isready -U phoenix -d phoenix_cn_directory
+# Kill conflicting processes
+lsof -ti:3000 | xargs kill -9  # Frontend
+lsof -ti:4000 | xargs kill -9  # API
+lsof -ti:5433 | xargs kill -9  # PostgreSQL
 ```
 
-### OpenSearch Issues
-Check if OpenSearch is running:
+**Database connection errors:**
 ```bash
-curl http://localhost:9200/_cluster/health
+# Check if PostgreSQL is running (port 5433)
+docker exec phoenix-postgres pg_isready -U phoenix -d phoenix_cn_directory
+
+# Restart database if needed
+pnpm docker:down && pnpm docker:up
+```
+
+**Missing environment files:**
+```bash
+# Create frontend environment file
+echo "NEXT_PUBLIC_API_URL=http://localhost:4000" > packages/web/.env.local
+
+# API environment file should already exist at packages/api/.env
+```
+
+**OpenSearch warnings (can be ignored for basic functionality):**
+The Chinese tokenizer error doesn't affect core features. Search functionality will be limited until the proper plugin is installed.
+
+**Build failures:**
+```bash
+# Try building each package individually
+pnpm --filter shared build
+pnpm --filter api build  
+pnpm --filter web build
+
+# Or build all at once
+pnpm build
 ```
 
 ## 📄 License

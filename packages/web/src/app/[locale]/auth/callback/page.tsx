@@ -2,12 +2,14 @@
 
 import { useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useLocale } from 'next-intl';
 import { useAuth } from '../../../../contexts/AuthContext';
 
 export default function AuthCallbackPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { user } = useAuth();
+  const currentLocale = useLocale() as 'en' | 'zh';
 
   useEffect(() => {
     const handleCallback = async () => {
@@ -32,16 +34,16 @@ export default function AuthCallbackPage() {
             localStorage.setItem('user', JSON.stringify(userData));
             
             // Redirect to home page
-            router.push('/');
+            router.push(`/${currentLocale}` as any);
           } else {
             throw new Error('Failed to fetch user data');
           }
         } catch (error) {
-          console.error('Auth callback error:', error);
-          router.push('/login');
+          // Auth callback error - redirecting to login
+          router.push(`/${currentLocale}/login`);
         }
       } else {
-        router.push('/login');
+        router.push(`/${currentLocale}/login`);
       }
     };
 

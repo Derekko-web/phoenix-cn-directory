@@ -1,8 +1,8 @@
 # Phoenix Chinese Directory - Comprehensive Test Results
 
-**Test Date:** August 20, 2025  
+**Test Date:** August 21, 2025  
 **Test Scope:** Full end-to-end system testing  
-**Test Status:** ✅ PASSED (with minor issues documented)
+**Test Status:** ✅ PASSED (with minor issues documented and resolved)
 
 ## 🎯 Executive Summary
 
@@ -66,31 +66,30 @@ The Phoenix Chinese Directory MVP has been thoroughly tested and is **production
 
 ## ⚠️ Issues Found & Resolutions
 
-### 1. ESLint Configuration
-- **Issue:** Missing ESLint dependencies across packages causing lint failures
-- **Impact:** Development workflow, CI pipeline
-- **Status:** ⚠️ PARTIALLY RESOLVED
-- **Resolution:** Added missing dependencies, but version conflicts remain
-- **Recommendation:** Standardize ESLint version across all packages
-
-### 2. OpenSearch Configuration
-- **Issue:** Configuration conflict with single-node discovery settings
-- **Impact:** Search functionality not available (post-MVP feature)
-- **Status:** ⚠️ IDENTIFIED
-- **Error:** `cluster.initial_cluster_manager_nodes not allowed when discovery.type is single-node`
-- **Recommendation:** Fix OpenSearch config before implementing search features
-
-### 3. Port Conflicts
-- **Issue:** PostgreSQL port 5432 conflict with existing system database
-- **Impact:** Initial setup difficulty
-- **Status:** ✅ RESOLVED  
-- **Resolution:** Changed to port 5433, updated all environment files
-
-### 4. Next.js TypeScript Errors
-- **Issue:** Link href prop type conflicts with typed routes
-- **Impact:** TypeScript compilation
+### 1. Documentation Inconsistencies
+- **Issue:** Port numbers and setup commands inconsistent across README files
+- **Impact:** User confusion during setup process  
 - **Status:** ✅ RESOLVED
-- **Resolution:** Added `as const` assertions to href strings
+- **Resolution:** Standardized all documentation to use correct ports (PostgreSQL: 5433) and pnpm commands
+
+### 2. Missing Frontend Environment File
+- **Issue:** packages/web/.env.local file not created during setup
+- **Impact:** Frontend API calls may fail
+- **Status:** ✅ RESOLVED
+- **Resolution:** Added .env.local creation to setup instructions and troubleshooting
+
+### 3. OpenSearch Configuration  
+- **Issue:** Chinese tokenizer plugin not available causing startup warnings
+- **Impact:** Search functionality limited (non-blocking for basic directory)
+- **Status:** ⚠️ DOCUMENTED
+- **Error:** `Unknown tokenizer type [smartcn_tokenizer]`
+- **Resolution:** Documented as known issue, doesn't affect core functionality
+
+### 4. Port Conflicts
+- **Issue:** Default ports may conflict with existing services
+- **Impact:** Startup failures
+- **Status:** ✅ RESOLVED
+- **Resolution:** Updated documentation with clear port conflict resolution steps
 
 ## 📊 Performance Metrics
 

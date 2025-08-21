@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 import { useAuth } from '../../../contexts/AuthContext';
 
@@ -15,15 +15,13 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const { register, loginWithGoogle } = useAuth();
   const router = useRouter();
-  const pathname = usePathname();
   const t = useTranslations('auth.register');
-
-  const currentLocale = pathname.startsWith('/zh') ? 'zh' : 'en';
+  const currentLocale = useLocale() as 'en' | 'zh';
 
   // Set default preferred locale based on current page locale
-  useState(() => {
+  useEffect(() => {
     setPreferredLocale(currentLocale);
-  });
+  }, [currentLocale]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -27,10 +27,17 @@ export default async function RootLayout({
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages}>
           <AuthProvider>
+            {/* Skip Links */}
+            <a 
+              href="#main-content" 
+              className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-chinese-red-600 text-white px-4 py-2 rounded z-50"
+            >
+              Skip to main content
+            </a>
             <Navigation />
-            <div className="pt-20">
+            <main id="main-content" className="pt-20">
               {children}
-            </div>
+            </main>
             <Footer />
           </AuthProvider>
         </NextIntlClientProvider>

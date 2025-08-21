@@ -1,17 +1,16 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
+import { useTranslations, useLocale } from 'next-intl';
 import { useAuth } from '../../../contexts/AuthContext';
 import UserClaimsSection from '../../../components/UserClaimsSection';
 
 export default function DashboardPage() {
   const { user, isAuthenticated, loading } = useAuth();
   const router = useRouter();
-  const pathname = usePathname();
   const t = useTranslations('dashboard');
-  const currentLocale = pathname.startsWith('/zh') ? 'zh' : 'en';
+  const currentLocale = useLocale() as 'en' | 'zh';
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {

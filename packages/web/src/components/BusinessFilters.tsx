@@ -42,7 +42,7 @@ export function BusinessFilters({ locale, selectedCategory, selectedCity }: Busi
         // Filter for parent categories only
         setCategories(data.filter(cat => !cat.parentId));
       } catch (error) {
-        console.error('Error fetching categories:', error);
+        
       } finally {
         setLoading(false);
       }

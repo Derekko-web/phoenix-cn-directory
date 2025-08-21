@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { BusinessSubmissionForm } from '@/components/BusinessSubmissionForm';
+import { SubmitBusinessClient } from '@/components/SubmitBusinessClient';
 
 interface SubmitBusinessPageProps {
   params: {
@@ -8,39 +8,28 @@ interface SubmitBusinessPageProps {
 }
 
 export default async function SubmitBusinessPage({ params }: SubmitBusinessPageProps) {
-  const t = await getTranslations('submitBusiness');
-  
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-chinese-red-600 to-chinese-gold-600 text-white py-16">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold font-chinese mb-6">
-            {t('title')}
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-            {t('subtitle')}
-          </p>
-        </div>
-      </section>
-
-      {/* Form Section */}
-      <section className="py-12">
-        <div className="max-w-4xl mx-auto px-6">
-          <BusinessSubmissionForm locale={params.locale} />
-        </div>
-      </section>
+    <div className="min-h-screen chinese-pattern overflow-hidden">
+      <SubmitBusinessClient locale={params.locale} />
     </div>
   );
 }
 
 // SEO metadata
 export async function generateMetadata({ params }: { params: { locale: 'en' | 'zh' } }) {
-  const t = await getTranslations({ locale: params.locale, namespace: 'submitBusiness' });
+  const messages = params.locale === 'zh' 
+    ? {
+        title: '提交您的商家 | 凤凰城华人目录',
+        description: '将您的中式企业添加到我们的目录中，在凤凰城地区获得更多客户。'
+      }
+    : {
+        title: 'Submit Your Business | Phoenix Chinese Directory', 
+        description: 'Add your Chinese business to our directory and reach more customers in the Phoenix area.'
+      };
   
   return {
-    title: t('metaTitle'),
-    description: t('metaDescription'),
+    title: messages.title,
+    description: messages.description,
     alternates: {
       canonical: `/${params.locale}/submit-business`,
       languages: {

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 import { CategoryIcon } from './icons/CategoryIcons';
 
@@ -76,14 +76,14 @@ const cardVariants = {
     y: 0, 
     scale: 1,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 100,
       damping: 15
     }
   }
 };
 
-const CategoryCard = ({ category, index }: { category: Category; index: number }) => {
+const CategoryCard = ({ category, index, locale }: { category: Category; index: number; locale: 'en' | 'zh' }) => {
   const tCategories = useTranslations('categories');
   
   const getSizeClasses = (size: string) => {
@@ -107,9 +107,9 @@ const CategoryCard = ({ category, index }: { category: Category; index: number }
         transition: { duration: 0.2 } 
       }}
       whileTap={{ scale: 0.98 }}
-      className={getSizeClasses(category.size)}
+      className={`${getSizeClasses(category.size)} category-card`}
     >
-      <Link href={category.href} className="block h-full group">
+      <Link href={`/${locale}${category.href}` as any} className="block h-full group">
         <div className="relative h-full rounded-3xl overflow-hidden hover-glow">
           {/* Background gradient */}
           <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-90 group-hover:opacity-100 transition-opacity duration-300`} />
@@ -184,6 +184,7 @@ const CategoryCard = ({ category, index }: { category: Category; index: number }
 };
 
 export const CategoryGrid = () => {
+  const locale = useLocale() as 'en' | 'zh';
   return (
     <section className="py-20 px-6">
       <div className="max-w-7xl mx-auto">
@@ -214,7 +215,7 @@ export const CategoryGrid = () => {
           viewport={{ once: true, margin: "-100px" }}
         >
           {categories.map((category, index) => (
-            <CategoryCard key={category.key} category={category} index={index} />
+            <CategoryCard key={category.key} category={category} index={index} locale={locale} />
           ))}
         </motion.div>
 

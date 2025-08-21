@@ -94,7 +94,7 @@ export const Footer = () => {
                   transition={{ delay: 0.2 + index * 0.05 }}
                 >
                   <Link 
-                    href={link.href}
+                    href={link.href as any}
                     className="block text-chinese-ink-500 hover:text-chinese-red-600 transition-colors duration-200 font-chinese"
                   >
                     {link.label}

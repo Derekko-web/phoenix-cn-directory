@@ -9,8 +9,9 @@
   "nav": {
     "home": "首页",
     "businesses": "商家",
-    "events": "活动",
-    "about": "关于"
+    "categories": "分类",
+    "services": "服务",
+    "community": "社区"
   },
   "home": {
     "title": "凤凰城华人目录",
@@ -140,6 +141,15 @@
     "subtitle": "加入凤凰城华人目录，与您的社区建立联系",
     "metaTitle": "提交您的商家 | 凤凰城华人目录",
     "metaDescription": "将您的中式企业添加到我们的目录中，在凤凰城地区获得更多客户。",
+    "hero": {
+      "title": "列出您的企业",
+      "subtitle": "接触凤凰城华人社区的数千名客户",
+      "benefits": {
+        "visibility": "提高您的知名度",
+        "customers": "连接新客户",
+        "community": "加入我们不断增长的社区"
+      }
+    },
     "navigation": {
       "back": "返回",
       "next": "下一步",
@@ -156,13 +166,72 @@
       "contactDescription": "如何联系您",
       "hours": "营业时间",
       "hoursDescription": "营业时间",
-      "photos": "照片", 
+      "photos": "照片",
       "photosDescription": "展示您的商家",
       "preview": "预览",
-      "previewDescription": "审查并提交"
+      "previewDescription": "审查并提交",
+      "basicInfo": {
+        "title": "告诉我们您的企业情况",
+        "description": "从客户需要知道的基本信息开始",
+        "nameEn": "企业名称（英文）",
+        "nameEnPlaceholder": "例如: Golden Dragon Restaurant",
+        "nameEnHelp": "输入您的英文商家名称",
+        "nameZh": "企业名称（中文）",
+        "nameZhPlaceholder": "例如: 金龙餐厅",
+        "nameZhHelp": "输入您的中文商家名称",
+        "descriptionEn": "企业描述（英文）",
+        "descriptionEnPlaceholder": "描述您的业务、服务以及特色...",
+        "descriptionEnHelp": "告诉客户您的企业提供什么服务",
+        "descriptionZh": "企业描述（中文）",
+        "descriptionZhPlaceholder": "描述您的业务、服务以及特色...",
+        "descriptionZhHelp": "告诉客户您的企业提供什么服务",
+        "categories": "企业类别",
+        "categoriesHelp": "选择最适合您企业的类别",
+        "selectedCategories": "选中的类别",
+        "requiredNotice": "必填字段",
+        "requiredFields": "标有 * 的字段为必填项"
+      }
     },
     "errors": {
       "submitFailed": "提交商家失败。请重试。"
     }
+  },
+  "categories": {
+    "title": "商家分类",
+    "subtitle": "浏览凤凰城华人社区的各类商家和服务",
+    "metaTitle": "商家分类 | 凤凰城华人目录",
+    "metaDescription": "按类别浏览凤凰城华人商家 - 餐厅、服务、商店等。",
+    "eatDrink": "餐饮",
+    "groceries": "食品杂货",
+    "services": "服务",
+    "health": "健康保健",
+    "education": "教育",
+    "community": "社区文化",
+    "events": "活动"
+  },
+  "services": {
+    "title": "专业服务",
+    "subtitle": "凤凰城华人社区的专业服务提供商，提供中文服务",
+    "metaTitle": "专业服务 | 凤凰城华人目录",
+    "metaDescription": "寻找凤凰城说中文的律师、会计师、房地产经纪人和其他专业人士。",
+    "cta": {
+      "title": "是专业服务提供商？",
+      "description": "加入我们的专业服务目录，为凤凰城华人社区提供服务",
+      "button": "添加您的服务"
+    }
+  },
+  "community": {
+    "title": "华人社区",
+    "subtitle": "连接凤凰城华人社区，分享文化、活动和资源",
+    "metaTitle": "社区资源 | 凤凰城华人目录",
+    "metaDescription": "与凤凰城华人社区活动、新闻、文化项目和资源保持联系。",
+    "upcomingEvents": "即将举行的活动",
+    "cta": {
+      "title": "加入我们的社区",
+      "description": "成为凤凰城华人目录的一部分，与社区保持联系，获取最新资讯",
+      "createAccount": "注册账户",
+      "addResource": "添加活动或资源"
+    },
+    "comingSoon": "敬请期待"
   }
 }

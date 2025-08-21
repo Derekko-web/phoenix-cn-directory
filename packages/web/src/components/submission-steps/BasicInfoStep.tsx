@@ -12,7 +12,7 @@ import { useFormValidation } from '@/hooks/useFormValidation';
 import { FormValidator } from '@/lib/validation';
 
 export function BasicInfoStep({ data, onUpdate, locale }: StepProps) {
-  const t = useTranslations('submitBusiness.steps.basic');
+  const t = useTranslations('submitBusiness.steps.basicInfo');
   const [availableCategories, setAvailableCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   
@@ -30,7 +30,7 @@ export function BasicInfoStep({ data, onUpdate, locale }: StepProps) {
         // Filter for parent categories only for initial selection
         setAvailableCategories(categories.filter(cat => !cat.parentId));
       } catch (error) {
-        console.error('Error fetching categories:', error);
+        
       } finally {
         setLoading(false);
       }

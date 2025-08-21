@@ -19,7 +19,7 @@ const cardVariants = {
     y: 0, 
     scale: 1,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 100,
       damping: 15
     }
@@ -56,7 +56,7 @@ export function BusinessCard({ business, locale }: BusinessCardProps) {
     >
       <Link 
         href={`/${locale}/business/${business.slug}`}
-        className="block bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+        className="block bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden business-card"
       >
         {/* Business Photo */}
         <div className="relative h-48 bg-gray-100 overflow-hidden">

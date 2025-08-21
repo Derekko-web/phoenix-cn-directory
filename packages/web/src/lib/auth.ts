@@ -3,8 +3,13 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
 export interface User {
   id: string;
   email: string;
+  firstName?: string;
+  lastName?: string;
+  picture?: string;
   locale: string;
   roles: string[];
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface AuthResponse {

@@ -4,8 +4,17 @@ import { BusinessStatus } from '@prisma/client';
 
 export class BusinessQueryDto {
   @IsOptional()
+  @Transform(({ value }) => {
+    if (typeof value === 'string') {
+      const upper = value.toUpperCase();
+      if (upper === 'APPROVED' || upper === 'PENDING' || upper === 'REJECTED') {
+        return upper as BusinessStatus;
+      }
+    }
+    return value;
+  })
   @IsEnum(BusinessStatus)
-  status?: BusinessStatus = 'APPROVED' as BusinessStatus;
+  status?: BusinessStatus = BusinessStatus.APPROVED;
 
   @IsOptional()
   @IsString()
