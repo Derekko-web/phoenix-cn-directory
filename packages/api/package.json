@@ -19,7 +19,10 @@
     "db:push": "prisma db push",
     "db:reset": "prisma migrate reset --force",
     "db:seed": "ts-node prisma/seed.ts",
-    "seed:businesses": "ts-node src/scripts/seed-sample-businesses.ts"
+    "seed:businesses": "ts-node src/scripts/seed-sample-businesses.ts",
+    "scrape:images": "ts-node scripts/scrape-business-images.ts",
+    "scrape:google-images": "ts-node scripts/google-images-scraper.ts",
+    "clear:photos": "ts-node scripts/clear-photos.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.872.0",
@@ -41,6 +44,7 @@
     "@types/passport-local": "^1.0.38",
     "@types/uuid": "^10.0.0",
     "bcryptjs": "^3.0.2",
+    "cheerio": "^1.1.2",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.2",
     "handlebars": "^4.7.8",
@@ -51,6 +55,7 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
+    "puppeteer": "^24.17.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
     "uuid": "^11.1.0"

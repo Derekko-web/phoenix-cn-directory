@@ -1,167 +1,148 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
 export const Footer = () => {
-  const t = useTranslations('nav');
+  const tFooter = useTranslations('footer');
   
   return (
-    <footer className="relative mt-20 glass border-t border-white/10">
-      <div className="absolute inset-0 bg-gradient-to-r from-chinese-red-500/5 via-chinese-gold-500/5 to-chinese-jade-500/5" />
-      
-      <div className="relative max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-          {/* Brand */}
-          <div className="col-span-1 md:col-span-2">
-            <motion.div 
-              className="flex items-center gap-3 mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <div className="w-12 h-12 bg-gradient-to-br from-chinese-red-500 to-chinese-gold-500 rounded-xl flex items-center justify-center text-white font-chinese font-bold text-2xl shadow-lg">
+    <footer className="bg-gray-900 text-white mt-16">
+      {/* Main Footer Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Brand Section */}
+          <div className="lg:col-span-2">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-orange-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">
                 凤
               </div>
               <div>
-                <div className="text-xl font-bold bg-gradient-to-r from-chinese-red-600 to-chinese-gold-600 bg-clip-text text-transparent">
-                  凤凰城华人目录
-                </div>
-                <div className="text-sm text-chinese-ink-500">
+                <div className="text-lg font-bold text-white">
                   Phoenix Chinese Directory
                 </div>
+                <div className="text-sm text-gray-300">
+                  凤凰城华人目录
+                </div>
               </div>
-            </motion.div>
+            </div>
             
-            <motion.p 
-              className="text-chinese-ink-600 mb-6 leading-relaxed font-chinese max-w-md"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              连接凤凰城华人社区，发现优质商家服务，分享文化活动资讯。我们致力于为在美华人提供便利的生活服务指南。
-            </motion.p>
+            <p className="text-gray-300 mb-6 max-w-md leading-relaxed">
+              {tFooter('description')}
+            </p>
 
-            <motion.div 
-              className="flex gap-4"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-            >
-              {['WeChat', 'WhatsApp', 'Email'].map((platform, index) => (
-                <motion.button
-                  key={platform}
-                  className="glass rounded-full p-3 hover:bg-chinese-red-500/10 transition-colors duration-200"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.9 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 + index * 0.1 }}
-                >
-                  <div className="w-5 h-5 bg-gradient-to-r from-chinese-red-500 to-chinese-gold-500 rounded-full" />
-                </motion.button>
-              ))}
-            </motion.div>
+            {/* Social Links */}
+            <div className="flex gap-3">
+              <a 
+                href="mailto:hello@phoenixcn.com" 
+                className="bg-gray-800 hover:bg-gray-700 p-3 rounded-lg transition-colors"
+                aria-label="Email"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                </svg>
+              </a>
+              <div className="bg-gray-800 p-3 rounded-lg">
+                <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19.2 3H4.8C3.806 3 3 3.806 3 4.8v14.4c0 .994.806 1.8 1.8 1.8h14.4c.994 0 1.8-.806 1.8-1.8V4.8c0-.994-.806-1.8-1.8-1.8zM8.4 18.6H5.7V9.9h2.7v8.7zM7.05 8.73c-.864 0-1.56-.696-1.56-1.56s.696-1.56 1.56-1.56 1.56.696 1.56 1.56-.696 1.56-1.56 1.56zM18.3 18.6h-2.7v-4.23c0-1.008-.018-2.304-1.404-2.304-1.404 0-1.62 1.098-1.62 2.232V18.6H9.9V9.9h2.592v1.188h.036c.36-.684 1.242-1.404 2.556-1.404 2.736 0 3.24 1.8 3.24 4.14v4.776z"/>
+                </svg>
+              </div>
+            </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <motion.h3 
-              className="font-bold text-chinese-ink-700 mb-6 font-chinese"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
-              快速链接
-            </motion.h3>
+            <h3 className="font-semibold text-white mb-4">
+              {tFooter('quickLinks')}
+            </h3>
             <div className="space-y-3">
-              {[
-                { label: '热门餐厅', href: '/restaurants' },
-                { label: '生活服务', href: '/services' },
-                { label: '社区活动', href: '/events' },
-                { label: '关于我们', href: '/about' },
-              ].map((link, index) => (
-                <motion.div
-                  key={link.label}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 + index * 0.05 }}
-                >
-                  <Link 
-                    href={link.href as any}
-                    className="block text-chinese-ink-500 hover:text-chinese-red-600 transition-colors duration-200 font-chinese"
-                  >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
+              <Link 
+                href="/en/businesses" 
+                className="block text-gray-300 hover:text-white transition-colors"
+              >
+                All Businesses
+              </Link>
+              <Link 
+                href="/en/categories" 
+                className="block text-gray-300 hover:text-white transition-colors"
+              >
+                Categories
+              </Link>
+              <Link 
+                href="/en/submit-business" 
+                className="block text-gray-300 hover:text-white transition-colors"
+              >
+                Add Your Business
+              </Link>
+              <Link 
+                href="/en/community" 
+                className="block text-gray-300 hover:text-white transition-colors"
+              >
+                Community
+              </Link>
             </div>
           </div>
 
           {/* Contact Info */}
           <div>
-            <motion.h3 
-              className="font-bold text-chinese-ink-700 mb-6 font-chinese"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              联系我们
-            </motion.h3>
+            <h3 className="font-semibold text-white mb-4">
+              {tFooter('contactUs')}
+            </h3>
             <div className="space-y-3">
-              {[
-                { icon: '📍', text: 'Phoenix, AZ' },
-                { icon: '📧', text: 'hello@phoenixcn.com' },
-                { icon: '💬', text: 'WeChat: PhoenixCN' },
-                { icon: '🕒', text: '24/7 在线服务' },
-              ].map((item, index) => (
-                <motion.div 
-                  className="flex items-center gap-3 text-chinese-ink-500 font-chinese"
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 + index * 0.05 }}
-                >
-                  <span className="text-lg">{item.icon}</span>
-                  <span className="text-sm">{item.text}</span>
-                </motion.div>
-              ))}
+              <div className="flex items-center gap-3 text-gray-300">
+                <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                </svg>
+                <span className="text-sm">Phoenix, Arizona</span>
+              </div>
+              <div className="flex items-center gap-3 text-gray-300">
+                <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                </svg>
+                <span className="text-sm">hello@phoenixcn.com</span>
+              </div>
+              <div className="flex items-center gap-3 text-gray-300">
+                <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                </svg>
+                <span className="text-sm">24/7 Community Support</span>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Bottom bar */}
-        <motion.div 
-          className="mt-12 pt-8 border-t border-chinese-red-500/10 flex flex-col md:flex-row justify-between items-center gap-4"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-        >
-          <div className="text-sm text-chinese-ink-400 font-chinese">
-            © 2025 凤凰城华人目录. All rights reserved.
+      {/* Bottom Bar */}
+      <div className="border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div className="text-sm text-gray-400">
+              {tFooter('copyright')}
+            </div>
+            <div className="flex gap-6 text-sm">
+              <Link 
+                href="/privacy" 
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                Privacy Policy
+              </Link>
+              <Link 
+                href="/terms" 
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                Terms of Service
+              </Link>
+              <Link 
+                href="/contact" 
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                Contact
+              </Link>
+            </div>
           </div>
-          <div className="flex gap-6 text-sm text-chinese-ink-400">
-            <Link href="/privacy" className="hover:text-chinese-red-600 transition-colors">
-              隐私政策
-            </Link>
-            <Link href="/terms" className="hover:text-chinese-red-600 transition-colors">
-              使用条款
-            </Link>
-          </div>
-        </motion.div>
-
-        {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-chinese-gold-500/10 to-chinese-red-500/10 rounded-full blur-3xl -translate-y-16 translate-x-16" />
-        <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-chinese-jade-500/10 to-chinese-gold-500/10 rounded-full blur-2xl translate-y-12 -translate-x-12" />
+        </div>
       </div>
     </footer>
   );

@@ -16,16 +16,29 @@
   "home": {
     "title": "凤凰城华人目录",
     "subtitle": "发现凤凰城都会区的中式企业、服务和活动",
-    "searchPlaceholder": "搜索餐厅、服务、活动..."
+    "searchPlaceholder": "搜索餐厅、服务、活动...",
+    "searchButton": "搜索",
+    "features": {
+      "community": "凤凰城华人社区",
+      "curated": "精选优质商家",
+      "fastSearch": "快速便捷搜索"
+    }
   },
   "categories": {
+    "title": "发现分类",
+    "subtitle": "从美食到服务，从健康到教育，一站式华人生活指南",
     "eatDrink": "餐饮",
     "groceries": "食品杂货",
     "services": "服务",
     "health": "健康保健",
     "education": "教育",
     "community": "社区文化",
-    "events": "活动"
+    "events": "活动",
+    "descriptions": {
+      "eatDrink": "探索正宗中式美食",
+      "community": "连接华人社区文化"
+    },
+    "comingSoon": "更多分类和服务，敬请期待... ✨"
   },
   "businesses": {
     "title": "华人商家",
@@ -39,20 +52,49 @@
     "viewAll": "查看所有商家",
     "resultsCount": "显示第 {start}-{end} 项，共 {total} 家商家",
     "previous": "上一页",
-    "next": "下一页"
+    "next": "下一页",
+    "sortBy": "排序",
+    "sort": {
+      "relevance": "相关度",
+      "name": "名称",
+      "rating": "评分最高",
+      "newest": "最新",
+      "distance": "距离"
+    },
+    "viewMode": {
+      "grid": "网格",
+      "list": "列表"
+    }
   },
   "business": {
     "open24h": "24小时营业",
     "today": "今天",
     "closed": "关门",
+    "openNow": "营业中",
     "viewDetails": "查看详情"
+  },
+  "hours": {
+    "title": "营业时间",
+    "closed": "关门",
+    "open24h": "24小时营业",
+    "today": "今天"
+  },
+  "reviews": {
+    "title": "评论",
+    "noReviews": "暂无评论",
+    "writeReview": "写评论",
+    "rating": "评分"
   },
   "search": {
     "placeholder": "搜索餐厅、商店、服务...",
     "clear": "清除",
     "search": "搜索",
     "searching": "搜索中...",
-    "suggestions": "热门搜索："
+    "suggestions": "搜索建议",
+    "recentSearches": "最近搜索",
+    "popularSearches": "热门搜索",
+    "clearAll": "清除所有",
+    "noSuggestions": "没有找到建议"
   },
   "filters": {
     "title": "筛选结果",
@@ -61,7 +103,10 @@
     "cities": "城市",
     "allCategories": "所有分类",
     "allCities": "所有城市",
-    "moreFiltersComingSoon": "更多筛选选项即将推出！"
+    "moreFiltersComingSoon": "更多筛选选项即将推出！",
+    "applyFilters": "应用筛选",
+    "status": "状态",
+    "rating": "评分"
   },
   "auth": {
     "login": {
@@ -93,7 +138,8 @@
     },
     "profile": {
       "welcome": "欢迎",
-      "logout": "注销"
+      "logout": "注销",
+      "dashboard": "仪表板"
     }
   },
   "dashboard": {
@@ -150,6 +196,38 @@
         "community": "加入我们不断增长的社区"
       }
     },
+    "features": {
+      "free": {
+        "title": "永久免费",
+        "description": "没有隐藏费用或月费"
+      },
+      "setup": {
+        "title": "简单设置",
+        "description": "5分钟内完成注册"
+      },
+      "bilingual": {
+        "title": "双语支持",
+        "description": "同时接触英语和中文用户"
+      },
+      "mobile": {
+        "title": "移动端优化",
+        "description": "在所有设备和屏幕上完美显示"
+      }
+    },
+    "cta": {
+      "getStarted": "开始注册",
+      "letsStart": "让我们开始吧",
+      "letsStartDescription": "只需几个简单步骤，您的企业就会出现在凤凰城华人目录中"
+    },
+    "community": {
+      "title": "加入我们不断壮大的社区",
+      "description": "数百家企业已经信任凤凰城华人目录来连接他们与客户。今天就加入我们吧！",
+      "stats": {
+        "businesses": "注册企业",
+        "visitors": "月访问量",
+        "visibility": "在线支持"
+      }
+    },
     "navigation": {
       "back": "返回",
       "next": "下一步",
@@ -195,6 +273,26 @@
     "errors": {
       "submitFailed": "提交商家失败。请重试。"
     }
+  },
+  "footer": {
+    "description": "连接凤凰城华人社区，发现优质商家服务，分享文化活动资讯。我们致力于为在美华人提供便利的生活服务指南。",
+    "quickLinks": "快速链接",
+    "contactUs": "联系我们",
+    "links": {
+      "restaurants": "热门餐厅",
+      "services": "生活服务",
+      "events": "社区活动",
+      "about": "关于我们"
+    },
+    "contact": {
+      "location": "Phoenix, AZ",
+      "email": "hello@phoenixcn.com",
+      "wechat": "WeChat: PhoenixCN",
+      "support": "24/7 在线服务"
+    },
+    "copyright": "© 2025 凤凰城华人目录. All rights reserved.",
+    "privacyPolicy": "隐私政策",
+    "termsOfService": "使用条款"
   },
   "categories": {
     "title": "商家分类",

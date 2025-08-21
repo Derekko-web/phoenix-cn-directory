@@ -104,7 +104,7 @@ export const HeroSection = () => {
                   className="flex-1 bg-transparent border-none outline-none text-lg placeholder-chinese-ink-400 font-chinese"
                 />
                 <button className="ml-4 bg-gradient-to-r from-chinese-red-500 to-chinese-gold-500 text-white px-6 py-2 rounded-lg hover:from-chinese-red-600 hover:to-chinese-gold-600 transition-all duration-300 font-medium">
-                  搜索
+                  {t('searchButton')}
                 </button>
               </div>
             </div>
@@ -119,13 +119,13 @@ export const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
         >
           <div className="glass rounded-full px-6 py-2 text-chinese-ink-600 font-medium">
-            🏮 凤凰城华人社区
+            🏮 {t('features.community')}
           </div>
           <div className="glass rounded-full px-6 py-2 text-chinese-ink-600 font-medium">
-            🌟 精选优质商家
+            🌟 {t('features.curated')}
           </div>
           <div className="glass rounded-full px-6 py-2 text-chinese-ink-600 font-medium">
-            🔍 快速便捷搜索
+            🔍 {t('features.fastSearch')}
           </div>
         </motion.div>
       </div>

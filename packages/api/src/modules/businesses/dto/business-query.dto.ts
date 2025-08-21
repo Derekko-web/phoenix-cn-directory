@@ -37,6 +37,10 @@ export class BusinessQueryDto {
   search?: string;
 
   @IsOptional()
+  @IsString()
+  sort?: 'relevance' | 'name' | 'rating' | 'newest' | 'distance' = 'relevance';
+
+  @IsOptional()
   @Type(() => Number)
   @IsNumber()
   @Min(1)

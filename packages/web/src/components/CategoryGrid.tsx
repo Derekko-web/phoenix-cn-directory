@@ -147,8 +147,8 @@ const CategoryCard = ({ category, index, locale }: { category: Category; index: 
               
               {category.size === 'large' && (
                 <p className="text-white/80 text-sm font-medium">
-                  {category.key === 'eatDrink' && '探索正宗中式美食'}
-                  {category.key === 'community' && '连接华人社区文化'}
+                  {category.key === 'eatDrink' && (locale === 'en' ? 'Explore authentic Chinese cuisine' : '探索正宗中式美食')}
+                  {category.key === 'community' && (locale === 'en' ? 'Connect with Chinese community culture' : '连接华人社区文化')}
                 </p>
               )}
             </div>
@@ -185,6 +185,7 @@ const CategoryCard = ({ category, index, locale }: { category: Category; index: 
 
 export const CategoryGrid = () => {
   const locale = useLocale() as 'en' | 'zh';
+  const t = useTranslations('categories');
   return (
     <section className="py-20 px-6">
       <div className="max-w-7xl mx-auto">
@@ -198,11 +199,11 @@ export const CategoryGrid = () => {
         >
           <h2 className="text-4xl md:text-5xl font-bold font-chinese mb-6">
             <span className="bg-gradient-to-r from-chinese-red-600 to-chinese-gold-600 bg-clip-text text-transparent">
-              发现分类
+              {t('title')}
             </span>
           </h2>
           <p className="text-xl text-chinese-ink-600 max-w-2xl mx-auto font-chinese">
-            从美食到服务，从健康到教育，一站式华人生活指南
+            {t('subtitle')}
           </p>
         </motion.div>
 
@@ -228,7 +229,7 @@ export const CategoryGrid = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <p className="text-chinese-ink-500 font-chinese">
-            更多分类和服务，敬请期待... ✨
+            {locale === 'en' ? 'More categories and services coming soon... ✨' : '更多分类和服务，敬请期待... ✨'}
           </p>
         </motion.div>
       </div>

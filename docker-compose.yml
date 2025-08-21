@@ -50,6 +50,11 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+    command: >
+      bash -c "
+        /usr/share/opensearch/bin/opensearch-plugin install --batch analysis-smartcn &&
+        /usr/share/opensearch/opensearch-docker-entrypoint.sh
+      "
 
   # OpenSearch Dashboards (optional)
   opensearch-dashboards:

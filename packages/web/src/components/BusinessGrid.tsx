@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { businessApi, type Business } from '@/lib/api';
 import { BusinessCard } from './BusinessCard';
+import { BusinessListItem } from './BusinessListItem';
+import { BusinessResultsHeader } from './BusinessResultsHeader';
 
 interface BusinessGridProps {
   locale: 'en' | 'zh';
@@ -34,9 +36,10 @@ export function BusinessGrid({ locale, searchParams }: BusinessGridProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [total, setTotal] = useState(0);
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   
   const currentPage = parseInt(searchParams?.page || '1');
-  const itemsPerPage = 12;
+  const itemsPerPage = viewMode === 'list' ? 8 : 12; // Fewer items for list view
   const offset = (currentPage - 1) * itemsPerPage;
 
   useEffect(() => {
@@ -46,10 +49,10 @@ export function BusinessGrid({ locale, searchParams }: BusinessGridProps) {
         setError(null);
         
         const response = await businessApi.getBusinesses({
-          
           category: searchParams?.category,
           search: searchParams?.search,
           city: searchParams?.city,
+          sort: searchParams?.sort,
           locale,
           limit: itemsPerPage,
           offset,
@@ -66,19 +69,118 @@ export function BusinessGrid({ locale, searchParams }: BusinessGridProps) {
     }
 
     fetchBusinesses();
-  }, [locale, searchParams?.category, searchParams?.search, searchParams?.city, offset]);
+  }, [locale, searchParams?.category, searchParams?.search, searchParams?.city, searchParams?.sort, offset, itemsPerPage]);
+
+  const renderLoadingSkeleton = () => {
+    if (viewMode === 'list') {
+      return (
+        <div className="space-y-4">
+          {[...Array(itemsPerPage)].map((_, i) => (
+            <motion.div 
+              key={i} 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              className="bg-white rounded-xl shadow-sm overflow-hidden"
+            >
+              {/* List Loading Skeleton */}
+              <div className="p-6 flex space-x-4">
+                {/* Image Skeleton */}
+                <div className="w-32 h-24 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded-lg animate-pulse"></div>
+                
+                {/* Content Skeleton */}
+                <div className="flex-1 space-y-3">
+                  {/* Title */}
+                  <div className="h-6 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded animate-pulse"></div>
+                  
+                  {/* Categories */}
+                  <div className="flex space-x-2">
+                    <div className="h-5 w-16 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded-full animate-pulse"></div>
+                    <div className="h-5 w-20 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded-full animate-pulse"></div>
+                  </div>
+                  
+                  {/* Description */}
+                  <div className="space-y-2">
+                    <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded animate-pulse"></div>
+                    <div className="h-4 w-3/4 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded animate-pulse"></div>
+                  </div>
+                </div>
+                
+                {/* Status Skeleton */}
+                <div className="flex flex-col items-end space-y-2">
+                  <div className="h-6 w-20 bg-gradient-to-r from-green-200 via-green-300 to-green-200 rounded-full animate-pulse"></div>
+                  <div className="h-4 w-16 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded animate-pulse"></div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      );
+    } else {
+      return (
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {[...Array(itemsPerPage)].map((_, i) => (
+            <motion.div 
+              key={i} 
+              variants={{
+                hidden: { opacity: 0, y: 30, scale: 0.95 },
+                visible: { 
+                  opacity: 1, 
+                  y: 0, 
+                  scale: 1,
+                  transition: { duration: 0.5, ease: "easeOut" }
+                }
+              }}
+              className="bg-white rounded-xl shadow-sm overflow-hidden business-card"
+            >
+              {/* Card Loading Skeleton */}
+              <div className="relative">
+                {/* Image Skeleton */}
+                <div className="h-48 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-200 animate-pulse relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[skeleton-shimmer_2s_ease-in-out_infinite]"></div>
+                </div>
+                
+                {/* Status Badge Skeleton */}
+                <div className="absolute top-3 right-3 h-6 w-20 bg-gradient-to-r from-green-200 via-green-300 to-green-200 rounded-full animate-pulse"></div>
+              </div>
+              
+              <div className="p-6 space-y-4">
+                {/* Title Skeleton */}
+                <div className="h-6 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded animate-pulse"></div>
+                
+                {/* Categories Skeleton */}
+                <div className="flex flex-wrap gap-2">
+                  <div className="h-5 w-16 bg-gradient-to-r from-chinese-red-200 via-chinese-red-300 to-chinese-red-200 rounded-full animate-pulse"></div>
+                  <div className="h-5 w-20 bg-gradient-to-r from-chinese-gold-200 via-chinese-gold-300 to-chinese-gold-200 rounded-full animate-pulse"></div>
+                </div>
+                
+                {/* Description Skeleton */}
+                <div className="space-y-2">
+                  <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded animate-pulse"></div>
+                  <div className="h-4 w-4/5 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded animate-pulse"></div>
+                  <div className="h-4 w-3/5 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded animate-pulse"></div>
+                </div>
+                
+                {/* Hours and Contact Skeleton */}
+                <div className="flex justify-between items-center pt-2">
+                  <div className="h-5 w-24 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded animate-pulse"></div>
+                  <div className="h-8 w-28 bg-gradient-to-r from-chinese-red-200 via-chinese-red-300 to-chinese-red-200 rounded-lg animate-pulse"></div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      );
+    }
+  };
 
   if (loading) {
-    return (
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
-        {[...Array(itemsPerPage)].map((_, i) => (
-          <div 
-            key={i} 
-            className="h-80 bg-white rounded-xl shadow-sm animate-pulse skeleton business-card"
-          />
-        ))}
-      </div>
-    );
+    return renderLoadingSkeleton();
   }
 
   if (error) {
@@ -120,34 +222,58 @@ export function BusinessGrid({ locale, searchParams }: BusinessGridProps) {
 
   const totalPages = Math.ceil(total / itemsPerPage);
 
+  const renderBusinesses = () => {
+    if (viewMode === 'list') {
+      return (
+        <motion.div
+          className="space-y-4 mb-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {businesses.map((business) => (
+            <BusinessListItem
+              key={business.id}
+              business={business}
+              locale={locale}
+            />
+          ))}
+        </motion.div>
+      );
+    } else {
+      return (
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 mb-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {businesses.map((business) => (
+            <BusinessCard
+              key={business.id}
+              business={business}
+              locale={locale}
+            />
+          ))}
+        </motion.div>
+      );
+    }
+  };
+
   return (
     <div>
-      {/* Results Summary */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="text-gray-600">
-          {t('resultsCount', { 
-            start: offset + 1, 
-            end: Math.min(offset + itemsPerPage, total), 
-            total 
-          })}
-        </div>
-      </div>
+      {/* Results Header with Controls */}
+      <BusinessResultsHeader
+        locale={locale}
+        total={total}
+        offset={offset}
+        itemsPerPage={itemsPerPage}
+        viewMode={viewMode}
+        onViewModeChange={setViewMode}
+      />
 
-      {/* Business Cards Grid */}
-      <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 mb-8"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {businesses.map((business) => (
-          <BusinessCard
-            key={business.id}
-            business={business}
-            locale={locale}
-          />
-        ))}
-      </motion.div>
+      {/* Business Cards/List */}
+      {renderBusinesses()}
 
       {/* Pagination */}
       {totalPages > 1 && (

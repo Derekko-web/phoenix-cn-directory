@@ -5,18 +5,20 @@ import { BusinessFilters } from '@/components/BusinessFilters';
 import { SearchBar } from '@/components/SearchBar';
 
 interface BusinessesPageProps {
-  params: {
+  params: Promise<{
     locale: 'en' | 'zh';
-  };
-  searchParams?: {
+  }>;
+  searchParams?: Promise<{
     category?: string;
     search?: string;
     city?: string;
     page?: string;
-  };
+  }>;
 }
 
 export default async function BusinessesPage({ params, searchParams }: BusinessesPageProps) {
+  const { locale } = await params;
+  const resolvedSearchParams = searchParams ? await searchParams : {};
   const t = await getTranslations('businesses');
   
   return (
@@ -37,8 +39,8 @@ export default async function BusinessesPage({ params, searchParams }: Businesse
           <div className="mt-8 md:mt-12 max-w-2xl mx-auto">
             <Suspense fallback={<div className="h-16 bg-white/20 rounded-xl animate-pulse skeleton" />}>
               <SearchBar 
-                locale={params.locale} 
-                initialSearch={searchParams?.search}
+                locale={locale} 
+                initialSearch={resolvedSearchParams?.search}
               />
             </Suspense>
           </div>
@@ -52,9 +54,9 @@ export default async function BusinessesPage({ params, searchParams }: Businesse
           <aside className="w-full lg:w-80">
             <Suspense fallback={<div className="h-96 bg-white rounded-xl shadow-sm animate-pulse skeleton" />}>
               <BusinessFilters 
-                locale={params.locale}
-                selectedCategory={searchParams?.category}
-                selectedCity={searchParams?.city}
+                locale={locale}
+                selectedCategory={resolvedSearchParams?.category}
+                selectedCity={resolvedSearchParams?.city}
               />
             </Suspense>
           </aside>
@@ -74,8 +76,8 @@ export default async function BusinessesPage({ params, searchParams }: Businesse
               }
             >
               <BusinessGrid 
-                locale={params.locale}
-                searchParams={searchParams}
+                locale={locale}
+                searchParams={resolvedSearchParams}
               />
             </Suspense>
           </main>
@@ -86,14 +88,15 @@ export default async function BusinessesPage({ params, searchParams }: Businesse
 }
 
 // SEO metadata
-export async function generateMetadata({ params }: { params: { locale: 'en' | 'zh' } }) {
-  const t = await getTranslations({ locale: params.locale, namespace: 'businesses' });
+export async function generateMetadata({ params }: { params: Promise<{ locale: 'en' | 'zh' }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'businesses' });
   
   return {
     title: t('metaTitle'),
     description: t('metaDescription'),
     alternates: {
-      canonical: `/${params.locale}/businesses`,
+      canonical: `/${locale}/businesses`,
       languages: {
         'en': '/en/businesses',
         'zh': '/zh/businesses',

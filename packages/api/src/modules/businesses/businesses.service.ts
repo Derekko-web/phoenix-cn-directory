@@ -22,7 +22,8 @@ export class BusinessesService {
       locale = 'en',
       limit = 20,
       offset = 0,
-      search
+      search,
+      sort = 'relevance'
     } = query;
 
     try {
@@ -72,8 +73,39 @@ export class BusinessesService {
         locale,
         limit: numLimit,
         offset: numOffset,
-        search
+        search,
+        sort
       });
+
+      // Determine orderBy based on sort parameter
+      let orderBy: any;
+      switch (sort) {
+        case 'name':
+          // For name sorting, we'll sort by slug which closely matches business names
+          orderBy = { slug: 'asc' };
+          break;
+        case 'rating':
+          // For rating, we'll use createdAt for now since we don't have aggregated rating fields
+          orderBy = { createdAt: 'desc' };
+          break;
+        case 'newest':
+          orderBy = { createdAt: 'desc' };
+          break;
+        case 'distance':
+          // For now, use default order since we don't have distance calculation
+          orderBy = { createdAt: 'desc' };
+          break;
+        case 'relevance':
+        default:
+          if (search) {
+            // When searching, prioritize by creation date for now
+            orderBy = { createdAt: 'desc' };
+          } else {
+            // Default to newest for general browsing
+            orderBy = { createdAt: 'desc' };
+          }
+          break;
+      }
 
       const [businesses, total] = await Promise.all([
         this.prisma.business.findMany({
@@ -99,7 +131,7 @@ export class BusinessesService {
           },
           take: numLimit,
           skip: numOffset,
-          orderBy: { createdAt: 'desc' }
+          orderBy
         }),
         this.prisma.business.count({ where })
       ]);

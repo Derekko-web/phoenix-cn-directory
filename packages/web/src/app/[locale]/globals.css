@@ -204,3 +204,550 @@ body {
   will-change: transform, opacity;
   transform: translateZ(0);
 }
+
+/* Enhanced 3D Card Effects */
+.bento-card {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.bento-card:hover {
+  transform: translateY(-8px) rotateX(2deg) rotateY(2deg) scale(1.02);
+}
+
+/* Advanced Glassmorphism */
+.glass-enhanced {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Modern Gradient Overlays */
+.gradient-mesh {
+  background: 
+    radial-gradient(ellipse at top left, rgba(220, 38, 38, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at top right, rgba(202, 157, 8, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom left, rgba(34, 197, 94, 0.1) 0%, transparent 50%);
+}
+
+/* Floating Animation */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-4px) rotate(0.5deg); }
+  66% { transform: translateY(-2px) rotate(-0.5deg); }
+}
+
+.float-gentle {
+  animation: float-gentle 6s ease-in-out infinite;
+}
+
+/* Enhanced Button Gradients */
+.btn-chinese-primary {
+  background: linear-gradient(135deg, #dc2626 0%, #ca9d08 50%, #22c55e 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Advanced Shadow System */
+.shadow-chinese-red { box-shadow: 0 10px 25px rgba(220, 38, 38, 0.2); }
+.shadow-chinese-gold { box-shadow: 0 10px 25px rgba(202, 157, 8, 0.2); }
+.shadow-chinese-jade { box-shadow: 0 10px 25px rgba(34, 197, 94, 0.2); }
+
+/* Morphing Borders */
+.border-morph {
+  border-radius: 20px;
+  transition: border-radius 0.3s ease;
+}
+
+.border-morph:hover {
+  border-radius: 35px;
+}
+
+/* Interactive Elements */
+.interactive-element {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.interactive-element:hover {
+  transform: translateY(-4px) scale(1.02);
+  filter: brightness(1.05);
+}
+
+/* Advanced 3D Card System */
+.card-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.card-3d:hover {
+  transform: rotateX(5deg) rotateY(5deg) translateZ(20px);
+}
+
+.card-3d::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-3d:hover::before {
+  opacity: 1;
+}
+
+/* Magnetic Button Effect */
+.btn-magnetic {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  will-change: transform;
+}
+
+.btn-magnetic:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.btn-magnetic::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.btn-magnetic:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Particle Animation */
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-20px) rotate(90deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-10px) rotate(180deg);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-15px) rotate(270deg);
+    opacity: 0.7;
+  }
+}
+
+.particle-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgba(220, 38, 38, 0.2), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(245, 158, 11, 0.2), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(16, 185, 129, 0.2), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(220, 38, 38, 0.1), transparent);
+  background-size: 200px 150px;
+  animation: particle-float 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Ripple Effect */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: all 0.6s ease;
+  z-index: 0;
+}
+
+.ripple:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Glow Pulse Effect */
+.glow-pulse {
+  position: relative;
+  animation: glow-pulse-animation 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow-pulse-animation {
+  0% {
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 40px rgba(220, 38, 38, 0.6), 0 0 60px rgba(245, 158, 11, 0.3);
+  }
+}
+
+/* Text Shimmer Effect */
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    #1e293b 0%,
+    #dc2626 25%,
+    #f59e0b 50%,
+    #10b981 75%,
+    #1e293b 100%
+  );
+  background-size: 400% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -400% 0; }
+  100% { background-position: 400% 0; }
+}
+
+/* Skeleton shimmer animation */
+@keyframes skeleton-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Floating Badge Animation */
+.floating-badge {
+  animation: floating-badge 4s ease-in-out infinite;
+}
+
+@keyframes floating-badge {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(-1deg);
+  }
+  75% {
+    transform: translateY(-6px) rotate(0.5deg);
+  }
+}
+
+/* Elastic Scale Animation */
+.elastic-scale {
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.elastic-scale:hover {
+  transform: scale(1.1);
+}
+
+/* Glass Card Enhancement */
+.glass-card-enhanced {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(25px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Neon Border Effect */
+.neon-border {
+  position: relative;
+  border: 2px solid transparent;
+  background: linear-gradient(45deg, transparent, transparent) padding-box,
+              linear-gradient(45deg, #dc2626, #f59e0b, #10b981, #dc2626) border-box;
+}
+
+.neon-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #dc2626, #f59e0b, #10b981, #dc2626);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  filter: blur(6px);
+  transition: opacity 0.3s ease;
+}
+
+.neon-border:hover::before {
+  opacity: 0.7;
+}
+
+/* Perspective Card Stack */
+.card-stack {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.card-stack::before,
+.card-stack::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: -4px;
+  bottom: -4px;
+  background: inherit;
+  border-radius: inherit;
+  z-index: -1;
+  transform: translateZ(-10px);
+  filter: brightness(0.9);
+}
+
+.card-stack::after {
+  top: 8px;
+  left: 8px;
+  right: -8px;
+  bottom: -8px;
+  transform: translateZ(-20px);
+  filter: brightness(0.8);
+}
+
+/* Parallax Scroll Effect */
+.parallax-element {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+/* Stagger Animation Helper */
+.stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: stagger-fade-in 0.6s ease forwards;
+}
+
+@keyframes stagger-fade-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stagger-item:nth-child(1) { animation-delay: 0.1s; }
+.stagger-item:nth-child(2) { animation-delay: 0.2s; }
+.stagger-item:nth-child(3) { animation-delay: 0.3s; }
+.stagger-item:nth-child(4) { animation-delay: 0.4s; }
+.stagger-item:nth-child(5) { animation-delay: 0.5s; }
+.stagger-item:nth-child(6) { animation-delay: 0.6s; }
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  /* Reduce 3D effects on mobile for better performance */
+  .bento-card,
+  .card-3d {
+    transform: none !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .bento-card:hover,
+  .card-3d:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Simplify animations for mobile */
+  .btn-magnetic,
+  .interactive-element {
+    transition: transform 0.2s ease;
+  }
+  
+  .btn-magnetic:hover,
+  .interactive-element:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Optimize particle animations */
+  .particle-bg::before {
+    animation-duration: 12s;
+    opacity: 0.3;
+  }
+  
+  /* Reduce backdrop blur for better mobile performance */
+  .glass,
+  .glass-dark,
+  .glass-enhanced,
+  .glass-card-enhanced {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  
+  /* Mobile-friendly floating elements */
+  .floating-badge {
+    animation-duration: 6s;
+  }
+  
+  /* Simplified neon effects */
+  .neon-border::before {
+    filter: blur(3px);
+  }
+  
+  /* Mobile typography adjustments */
+  .text-shimmer {
+    animation-duration: 4s;
+  }
+  
+  /* Touch-friendly hover states */
+  .hover-glow,
+  .elastic-scale {
+    transition: transform 0.2s ease;
+  }
+  
+  .hover-glow:active,
+  .elastic-scale:active {
+    transform: scale(0.95);
+  }
+  
+  /* Mobile-specific card spacing */
+  .bento-card {
+    margin-bottom: 1rem;
+  }
+  
+  /* Reduce parallax effects on mobile */
+  .parallax-element {
+    transform: none !important;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Remove hover effects for touch devices */
+  .card-3d:hover::before,
+  .btn-magnetic::after,
+  .ripple::before {
+    display: none;
+  }
+  
+  /* Focus states for touch */
+  .interactive-element:focus,
+  .btn-magnetic:focus,
+  .elastic-scale:focus {
+    outline: 2px solid rgb(220, 38, 38);
+    outline-offset: 2px;
+    transform: scale(1.02);
+  }
+  
+  /* Touch-friendly active states */
+  .interactive-element:active {
+    transform: scale(0.98);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .glass,
+  .glass-dark,
+  .glass-enhanced {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #000;
+  }
+  
+  .text-shimmer {
+    background: #000;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Print optimizations */
+@media print {
+  .bento-card,
+  .card-3d,
+  .glass,
+  .glass-dark {
+    background: white !important;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+  
+  .particle-bg::before,
+  .floating-badge,
+  .glow-pulse {
+    display: none !important;
+  }
+}
+
+/* Large screen enhancements */
+@media (min-width: 1920px) {
+  .bento-card:hover {
+    transform: translateY(-8px) rotateX(3deg) rotateY(3deg) scale(1.03);
+  }
+  
+  .card-3d:hover {
+    transform: rotateX(8deg) rotateY(8deg) translateZ(30px);
+  }
+  
+  .btn-magnetic:hover {
+    transform: translateY(-4px) scale(1.08);
+  }
+}
+
+/* Performance optimizations for older devices */
+@media (max-width: 480px) {
+  /* Disable heavy animations on small/older devices */
+  .particle-bg::before,
+  .floating-badge,
+  .text-shimmer,
+  .glow-pulse {
+    animation: none !important;
+  }
+  
+  /* Simplify gradients */
+  .gradient-mesh {
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, rgba(245, 158, 11, 0.03) 100%);
+  }
+  
+  /* Reduce backdrop blur further */
+  .glass,
+  .glass-dark {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+}

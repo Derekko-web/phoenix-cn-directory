@@ -33,28 +33,20 @@ export function SubmitBusinessClient({ locale }: SubmitBusinessClientProps) {
 
   const features = [
     {
-      titleEn: 'Free Forever',
-      titleZh: '永久免费',
-      descEn: 'No hidden fees or monthly charges',
-      descZh: '没有隐藏费用或月费'
+      titleKey: 'features.free.title',
+      descKey: 'features.free.description'
     },
     {
-      titleEn: 'Easy Setup',
-      titleZh: '简单设置',
-      descEn: 'Get listed in under 5 minutes',
-      descZh: '5分钟内完成注册'
+      titleKey: 'features.setup.title',
+      descKey: 'features.setup.description'
     },
     {
-      titleEn: 'Bilingual Support',
-      titleZh: '双语支持',
-      descEn: 'Reach both English and Chinese speakers',
-      descZh: '同时接触英语和中文用户'
+      titleKey: 'features.bilingual.title',
+      descKey: 'features.bilingual.description'
     },
     {
-      titleEn: 'Mobile Optimized',
-      titleZh: '移动端优化',
-      descEn: 'Perfect on all devices and screen sizes',
-      descZh: '在所有设备和屏幕上完美显示'
+      titleKey: 'features.mobile.title',
+      descKey: 'features.mobile.description'
     }
   ];
 
@@ -113,7 +105,7 @@ export function SubmitBusinessClient({ locale }: SubmitBusinessClientProps) {
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <a href="#form" className="inline-flex items-center gap-3 bg-gradient-to-r from-chinese-red-500 to-chinese-gold-500 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                  {currentLocale === 'zh' ? '开始注册' : 'Get Started'}
+                  {t('cta.getStarted')}
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
@@ -141,10 +133,10 @@ export function SubmitBusinessClient({ locale }: SubmitBusinessClientProps) {
                     <CheckIcon className="h-6 w-6" />
                   </div>
                   <h3 className="font-bold text-chinese-ink-800 mb-2">
-                    {currentLocale === 'zh' ? feature.titleZh : feature.titleEn}
+                    {t(feature.titleKey as any)}
                   </h3>
                   <p className="text-sm text-chinese-ink-600">
-                    {currentLocale === 'zh' ? feature.descZh : feature.descEn}
+                    {t(feature.descKey as any)}
                   </p>
                 </motion.div>
               ))}
@@ -164,13 +156,10 @@ export function SubmitBusinessClient({ locale }: SubmitBusinessClientProps) {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl font-bold text-chinese-ink-800 mb-4">
-              {currentLocale === 'zh' ? '让我们开始吧' : "Let's Get Started"}
+              {t('cta.letsStart')}
             </h2>
             <p className="text-chinese-ink-600 max-w-2xl mx-auto">
-              {currentLocale === 'zh' 
-                ? '只需几个简单步骤，您的企业就会出现在凤凰城华人目录中' 
-                : 'Your business will be live on Phoenix Chinese Directory in just a few simple steps'
-              }
+              {t('cta.letsStartDescription')}
             </p>
           </motion.div>
           
@@ -196,26 +185,23 @@ export function SubmitBusinessClient({ locale }: SubmitBusinessClientProps) {
             viewport={{ once: true }}
           >
             <h3 className="text-2xl font-bold text-chinese-ink-800 mb-4">
-              {currentLocale === 'zh' ? '加入我们不断壮大的社区' : 'Join Our Growing Community'}
+              {t('community.title')}
             </h3>
             <p className="text-chinese-ink-600 mb-8 max-w-2xl mx-auto">
-              {currentLocale === 'zh' 
-                ? '数百家企业已经信任凤凰城华人目录来连接他们与客户。今天就加入我们吧！' 
-                : 'Hundreds of businesses trust Phoenix Chinese Directory to connect them with customers. Join us today!'
-              }
+              {t('community.description')}
             </p>
             <div className="flex items-center justify-center gap-8 text-chinese-ink-500">
               <div className="text-center">
                 <div className="text-3xl font-bold text-chinese-red-600">500+</div>
-                <div className="text-sm">{currentLocale === 'zh' ? '注册企业' : 'Businesses Listed'}</div>
+                <div className="text-sm">{t('community.stats.businesses')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-chinese-gold-600">10K+</div>
-                <div className="text-sm">{currentLocale === 'zh' ? '月访问量' : 'Monthly Visitors'}</div>
+                <div className="text-sm">{t('community.stats.visitors')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-chinese-jade-600">24/7</div>
-                <div className="text-sm">{currentLocale === 'zh' ? '在线支持' : 'Online Visibility'}</div>
+                <div className="text-sm">{t('community.stats.visibility')}</div>
               </div>
             </div>
           </motion.div>

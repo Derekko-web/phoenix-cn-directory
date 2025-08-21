@@ -16,16 +16,29 @@
   "home": {
     "title": "Phoenix Chinese Directory",
     "subtitle": "Discover Chinese businesses, services, and events in the Phoenix metro area",
-    "searchPlaceholder": "Search for restaurants, services, events..."
+    "searchPlaceholder": "Search for restaurants, services, events...",
+    "searchButton": "Search",
+    "features": {
+      "community": "Phoenix Chinese Community",
+      "curated": "Curated Quality Businesses",
+      "fastSearch": "Fast & Easy Search"
+    }
   },
   "categories": {
+    "title": "Discover Categories",
+    "subtitle": "From dining to services, from health to education, your one-stop guide to Chinese life",
     "eatDrink": "Eat & Drink",
     "groceries": "Groceries & Specialty",
     "services": "Services",
     "health": "Health & Wellness",
     "education": "Education",
     "community": "Community & Culture",
-    "events": "Events"
+    "events": "Events",
+    "descriptions": {
+      "eatDrink": "Explore authentic Chinese cuisine",
+      "community": "Connect with Chinese community culture"
+    },
+    "comingSoon": "More categories and services coming soon... ✨"
   },
   "businesses": {
     "title": "Chinese Businesses",
@@ -39,20 +52,49 @@
     "viewAll": "View All Businesses",
     "resultsCount": "Showing {start}-{end} of {total} businesses",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "sortBy": "Sort by",
+    "sort": {
+      "relevance": "Relevance",
+      "name": "Name",
+      "rating": "Highest Rated",
+      "newest": "Newest",
+      "distance": "Distance"
+    },
+    "viewMode": {
+      "grid": "Grid",
+      "list": "List"
+    }
   },
   "business": {
     "open24h": "Open 24 hours",
     "today": "Today",
     "closed": "Closed",
+    "openNow": "Open Now",
     "viewDetails": "View Details"
+  },
+  "hours": {
+    "title": "Business Hours",
+    "closed": "Closed",
+    "open24h": "Open 24 hours",
+    "today": "Today"
+  },
+  "reviews": {
+    "title": "Reviews",
+    "noReviews": "No reviews yet",
+    "writeReview": "Write a Review",
+    "rating": "Rating"
   },
   "search": {
     "placeholder": "Search for restaurants, shops, services...",
     "clear": "Clear",
     "search": "Search",
     "searching": "Searching...",
-    "suggestions": "Popular searches:"
+    "suggestions": "Suggestions",
+    "recentSearches": "Recent Searches",
+    "popularSearches": "Popular Searches",
+    "clearAll": "Clear All",
+    "noSuggestions": "No suggestions found"
   },
   "filters": {
     "title": "Filter Results",
@@ -61,7 +103,10 @@
     "cities": "Cities",
     "allCategories": "All Categories",
     "allCities": "All Cities",
-    "moreFiltersComingSoon": "More filters coming soon!"
+    "moreFiltersComingSoon": "More filters coming soon!",
+    "applyFilters": "Apply Filters",
+    "status": "Status",
+    "rating": "Rating"
   },
   "auth": {
     "login": {
@@ -93,7 +138,8 @@
     },
     "profile": {
       "welcome": "Welcome",
-      "logout": "Logout"
+      "logout": "Logout",
+      "dashboard": "Dashboard"
     }
   },
   "dashboard": {
@@ -150,6 +196,38 @@
         "community": "Join our growing community"
       }
     },
+    "features": {
+      "free": {
+        "title": "Free Forever",
+        "description": "No hidden fees or monthly charges"
+      },
+      "setup": {
+        "title": "Easy Setup",
+        "description": "Get listed in under 5 minutes"
+      },
+      "bilingual": {
+        "title": "Bilingual Support",
+        "description": "Reach both English and Chinese speakers"
+      },
+      "mobile": {
+        "title": "Mobile Optimized",
+        "description": "Perfect on all devices and screen sizes"
+      }
+    },
+    "cta": {
+      "getStarted": "Get Started",
+      "letsStart": "Let's Get Started",
+      "letsStartDescription": "Your business will be live on Phoenix Chinese Directory in just a few simple steps"
+    },
+    "community": {
+      "title": "Join Our Growing Community",
+      "description": "Hundreds of businesses trust Phoenix Chinese Directory to connect them with customers. Join us today!",
+      "stats": {
+        "businesses": "Businesses Listed",
+        "visitors": "Monthly Visitors",
+        "visibility": "Online Visibility"
+      }
+    },
     "navigation": {
       "back": "Back",
       "next": "Next", 
@@ -195,6 +273,26 @@
     "errors": {
       "submitFailed": "Failed to submit business. Please try again."
     }
+  },
+  "footer": {
+    "description": "Connect with the Phoenix Chinese community, discover quality business services, and share cultural activities. We are dedicated to providing convenient life service guides for Chinese Americans.",
+    "quickLinks": "Quick Links",
+    "contactUs": "Contact Us",
+    "links": {
+      "restaurants": "Popular Restaurants",
+      "services": "Life Services",
+      "events": "Community Events",
+      "about": "About Us"
+    },
+    "contact": {
+      "location": "Phoenix, AZ",
+      "email": "hello@phoenixcn.com",
+      "wechat": "WeChat: PhoenixCN",
+      "support": "24/7 Online Service"
+    },
+    "copyright": "© 2025 Phoenix Chinese Directory. All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
   },
   "categories": {
     "title": "Business Categories",
