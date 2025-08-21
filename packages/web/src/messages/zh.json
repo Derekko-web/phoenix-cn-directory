@@ -1,0 +1,168 @@
+{
+  "common": {
+    "search": "搜索",
+    "categories": "分类",
+    "loading": "加载中...",
+    "error": "发生错误",
+    "noResults": "未找到结果"
+  },
+  "nav": {
+    "home": "首页",
+    "businesses": "商家",
+    "events": "活动",
+    "about": "关于"
+  },
+  "home": {
+    "title": "凤凰城华人目录",
+    "subtitle": "发现凤凰城都会区的中式企业、服务和活动",
+    "searchPlaceholder": "搜索餐厅、服务、活动..."
+  },
+  "categories": {
+    "eatDrink": "餐饮",
+    "groceries": "食品杂货",
+    "services": "服务",
+    "health": "健康保健",
+    "education": "教育",
+    "community": "社区文化",
+    "events": "活动"
+  },
+  "businesses": {
+    "title": "华人商家",
+    "subtitle": "发现凤凰城都会区正宗的中式餐厅、服务和商店",
+    "metaTitle": "凤凰城华人商家 | 凤凰城华人目录",
+    "metaDescription": "查找凤凰城都会区最好的中式餐厅、商店和服务。真实评价和商家信息。",
+    "errorLoading": "加载商家失败",
+    "retry": "重试",
+    "noResults": "未找到商家",
+    "noResultsDescription": "请调整您的搜索条件或浏览所有商家。",
+    "viewAll": "查看所有商家",
+    "resultsCount": "显示第 {start}-{end} 项，共 {total} 家商家",
+    "previous": "上一页",
+    "next": "下一页"
+  },
+  "business": {
+    "open24h": "24小时营业",
+    "today": "今天",
+    "closed": "关门",
+    "viewDetails": "查看详情"
+  },
+  "search": {
+    "placeholder": "搜索餐厅、商店、服务...",
+    "clear": "清除",
+    "search": "搜索",
+    "searching": "搜索中...",
+    "suggestions": "热门搜索："
+  },
+  "filters": {
+    "title": "筛选结果",
+    "clearAll": "清除所有",
+    "categories": "分类",
+    "cities": "城市",
+    "allCategories": "所有分类",
+    "allCities": "所有城市",
+    "moreFiltersComingSoon": "更多筛选选项即将推出！"
+  },
+  "auth": {
+    "login": {
+      "title": "登录您的账户",
+      "email": "电子邮箱",
+      "password": "密码",
+      "signIn": "登录",
+      "signingIn": "登录中...",
+      "noAccount": "还没有账户？",
+      "signUp": "注册",
+      "invalidCredentials": "邮箱或密码无效",
+      "forgotPassword": "忘记密码？"
+    },
+    "register": {
+      "title": "创建您的账户",
+      "email": "电子邮箱",
+      "password": "密码",
+      "confirmPassword": "确认密码",
+      "createAccount": "创建账户",
+      "creatingAccount": "创建账户中...",
+      "hasAccount": "已有账户？",
+      "signIn": "登录",
+      "passwordMismatch": "密码不匹配",
+      "passwordTooShort": "密码至少需要6个字符",
+      "registrationFailed": "注册失败",
+      "preferredLanguage": "首选语言",
+      "english": "English",
+      "chinese": "中文"
+    },
+    "profile": {
+      "welcome": "欢迎",
+      "logout": "注销"
+    }
+  },
+  "dashboard": {
+    "title": "用户仪表板",
+    "welcomeBack": "欢迎回来",
+    "memberSince": "成员自",
+    "loading": "加载中...",
+    "profile": {
+      "title": "个人资料",
+      "email": "电子邮箱",
+      "name": "姓名",
+      "preferredLanguage": "首选语言",
+      "editProfile": "编辑资料"
+    },
+    "businesses": {
+      "title": "我的商家",
+      "noBusinesses": "您还没有添加任何商家",
+      "addBusiness": "添加商家"
+    },
+    "activity": {
+      "title": "活动",
+      "accountCreated": "账户已创建"
+    },
+    "settings": {
+      "title": "设置",
+      "accountSettings": "账户设置",
+      "notifications": "通知偏好",
+      "privacy": "隐私设置"
+    },
+    "quickActions": {
+      "title": "快捷操作",
+      "addBusiness": "添加商家",
+      "writeReview": "写评价",
+      "browseBusiness": "浏览商家"
+    },
+    "help": {
+      "title": "帮助与支持",
+      "faq": "常见问题",
+      "contact": "联系支持",
+      "userGuide": "使用指南"
+    }
+  },
+  "submitBusiness": {
+    "title": "添加您的商家",
+    "subtitle": "加入凤凰城华人目录，与您的社区建立联系",
+    "metaTitle": "提交您的商家 | 凤凰城华人目录",
+    "metaDescription": "将您的中式企业添加到我们的目录中，在凤凰城地区获得更多客户。",
+    "navigation": {
+      "back": "返回",
+      "next": "下一步",
+      "submit": "提交商家",
+      "submitting": "提交中...",
+      "stepCount": "第 {current} 步，共 {total} 步"
+    },
+    "steps": {
+      "basic": "基本信息",
+      "basicDescription": "商家详情",
+      "location": "位置",
+      "locationDescription": "地址和区域",
+      "contact": "联系方式",
+      "contactDescription": "如何联系您",
+      "hours": "营业时间",
+      "hoursDescription": "营业时间",
+      "photos": "照片", 
+      "photosDescription": "展示您的商家",
+      "preview": "预览",
+      "previewDescription": "审查并提交"
+    },
+    "errors": {
+      "submitFailed": "提交商家失败。请重试。"
+    }
+  }
+}

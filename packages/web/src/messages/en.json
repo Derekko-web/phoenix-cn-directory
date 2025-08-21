@@ -1,0 +1,168 @@
+{
+  "common": {
+    "search": "Search",
+    "categories": "Categories",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "noResults": "No results found"
+  },
+  "nav": {
+    "home": "Home",
+    "businesses": "Businesses",
+    "events": "Events",
+    "about": "About"
+  },
+  "home": {
+    "title": "Phoenix Chinese Directory",
+    "subtitle": "Discover Chinese businesses, services, and events in the Phoenix metro area",
+    "searchPlaceholder": "Search for restaurants, services, events..."
+  },
+  "categories": {
+    "eatDrink": "Eat & Drink",
+    "groceries": "Groceries & Specialty",
+    "services": "Services",
+    "health": "Health & Wellness",
+    "education": "Education",
+    "community": "Community & Culture",
+    "events": "Events"
+  },
+  "businesses": {
+    "title": "Chinese Businesses",
+    "subtitle": "Discover authentic Chinese restaurants, services, and stores in Phoenix",
+    "metaTitle": "Chinese Businesses in Phoenix | Phoenix Chinese Directory",
+    "metaDescription": "Find the best Chinese restaurants, shops, and services in the Phoenix metro area. Authentic reviews and business information.",
+    "errorLoading": "Failed to load businesses",
+    "retry": "Try Again",
+    "noResults": "No businesses found",
+    "noResultsDescription": "Try adjusting your search criteria or browse all businesses.",
+    "viewAll": "View All Businesses",
+    "resultsCount": "Showing {start}-{end} of {total} businesses",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "business": {
+    "open24h": "Open 24 hours",
+    "today": "Today",
+    "closed": "Closed",
+    "viewDetails": "View Details"
+  },
+  "search": {
+    "placeholder": "Search for restaurants, shops, services...",
+    "clear": "Clear",
+    "search": "Search",
+    "searching": "Searching...",
+    "suggestions": "Popular searches:"
+  },
+  "filters": {
+    "title": "Filter Results",
+    "clearAll": "Clear All",
+    "categories": "Categories",
+    "cities": "Cities",
+    "allCategories": "All Categories",
+    "allCities": "All Cities",
+    "moreFiltersComingSoon": "More filters coming soon!"
+  },
+  "auth": {
+    "login": {
+      "title": "Sign in to your account",
+      "email": "Email address",
+      "password": "Password",
+      "signIn": "Sign in",
+      "signingIn": "Signing in...",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up",
+      "invalidCredentials": "Invalid email or password",
+      "forgotPassword": "Forgot your password?"
+    },
+    "register": {
+      "title": "Create your account",
+      "email": "Email address",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "createAccount": "Create account",
+      "creatingAccount": "Creating account...",
+      "hasAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "passwordMismatch": "Passwords do not match",
+      "passwordTooShort": "Password must be at least 6 characters long",
+      "registrationFailed": "Registration failed",
+      "preferredLanguage": "Preferred Language",
+      "english": "English",
+      "chinese": "中文"
+    },
+    "profile": {
+      "welcome": "Welcome",
+      "logout": "Logout"
+    }
+  },
+  "dashboard": {
+    "title": "User Dashboard",
+    "welcomeBack": "Welcome back",
+    "memberSince": "Member since",
+    "loading": "Loading...",
+    "profile": {
+      "title": "Profile",
+      "email": "Email",
+      "name": "Name",
+      "preferredLanguage": "Preferred Language",
+      "editProfile": "Edit Profile"
+    },
+    "businesses": {
+      "title": "My Businesses",
+      "noBusinesses": "You haven't added any businesses yet",
+      "addBusiness": "Add Business"
+    },
+    "activity": {
+      "title": "Activity",
+      "accountCreated": "Account created"
+    },
+    "settings": {
+      "title": "Settings",
+      "accountSettings": "Account Settings",
+      "notifications": "Notification Preferences",
+      "privacy": "Privacy Settings"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "addBusiness": "Add Business",
+      "writeReview": "Write Review",
+      "browseBusiness": "Browse Businesses"
+    },
+    "help": {
+      "title": "Help & Support",
+      "faq": "FAQ",
+      "contact": "Contact Support",
+      "userGuide": "User Guide"
+    }
+  },
+  "submitBusiness": {
+    "title": "Add Your Business",
+    "subtitle": "Join the Phoenix Chinese Directory and connect with your community",
+    "metaTitle": "Submit Your Business | Phoenix Chinese Directory",
+    "metaDescription": "Add your Chinese business to our directory and reach more customers in the Phoenix area.",
+    "navigation": {
+      "back": "Back",
+      "next": "Next",
+      "submit": "Submit Business",
+      "submitting": "Submitting...",
+      "stepCount": "Step {current} of {total}"
+    },
+    "steps": {
+      "basic": "Basic Info",
+      "basicDescription": "Business details",
+      "location": "Location",
+      "locationDescription": "Address & area",
+      "contact": "Contact",
+      "contactDescription": "How to reach you",
+      "hours": "Hours",
+      "hoursDescription": "When you're open",
+      "photos": "Photos", 
+      "photosDescription": "Show your business",
+      "preview": "Preview",
+      "previewDescription": "Review & submit"
+    },
+    "errors": {
+      "submitFailed": "Failed to submit business. Please try again."
+    }
+  }
+}

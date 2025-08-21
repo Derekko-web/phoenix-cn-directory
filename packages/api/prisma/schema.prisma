@@ -1,0 +1,252 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [postgis]
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String?
+  locale    String   @default("en")
+  roles     String[] @default(["user"])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // OAuth fields
+  googleId    String? @unique
+  firstName   String?
+  lastName    String?
+  picture     String?
+
+  ownedBusinesses Business[]
+  reviews         Review[]
+  bookmarks       Bookmark[]
+  claims          Claim[]
+  photos          Photo[]
+
+  @@map("users")
+}
+
+model Business {
+  id          String        @id @default(cuid())
+  slug        String        @unique
+  status      BusinessStatus @default(PENDING)
+  ownerUserId String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  owner       User?                   @relation(fields: [ownerUserId], references: [id])
+  localized   BusinessLocalized[]
+  contact     BusinessContact?
+  location    BusinessLocation?
+  hours       BusinessHours[]
+  categories  BusinessCategory[]
+  attributes  BusinessAttribute[]
+  photos      Photo[]
+  reviews     Review[]
+  bookmarks   Bookmark[]
+  claims      Claim[]
+
+  @@map("businesses")
+}
+
+model BusinessLocalized {
+  businessId     String
+  lang           String
+  name           String
+  description    String?
+  slugLocalized  String
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@id([businessId, lang])
+  @@map("business_localized")
+}
+
+model BusinessContact {
+  businessId String @id
+  phone      String?
+  email      String?
+  website    String?
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@map("business_contact")
+}
+
+model BusinessLocation {
+  businessId   String                                   @id
+  addressLines String[]
+  city         String
+  state        String
+  zip          String
+  geo          Unsupported("geometry(Point, 4326)")?
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@map("business_location")
+}
+
+model BusinessHours {
+  id         String  @id @default(cuid())
+  businessId String
+  dayOfWeek  Int     // 0-6, Sunday = 0
+  openTime   String?  // HH:mm format
+  closeTime  String?  // HH:mm format
+  is24h      Boolean @default(false)
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@unique([businessId, dayOfWeek])
+  @@map("business_hours")
+}
+
+model Category {
+  id       String  @id @default(cuid())
+  parentId String?
+  key      String  @unique
+  icon     String?
+  nameEn   String
+  nameZh   String
+
+  parent     Category?          @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children   Category[]         @relation("CategoryHierarchy")
+  businesses BusinessCategory[]
+
+  @@map("categories")
+}
+
+model BusinessCategory {
+  businessId String
+  categoryId String
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([businessId, categoryId])
+  @@map("business_categories")
+}
+
+model Attribute {
+  id        String           @id @default(cuid())
+  key       String           @unique
+  valueType AttributeType
+
+  businesses BusinessAttribute[]
+
+  @@map("attributes")
+}
+
+model BusinessAttribute {
+  businessId  String
+  attributeId String
+  value       String
+
+  business  Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  attribute Attribute @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+
+  @@id([businessId, attributeId])
+  @@map("business_attributes")
+}
+
+model Photo {
+  id           String      @id @default(cuid())
+  businessId   String
+  userId       String?
+  url          String
+  storageKey   String
+  originalName String
+  mimeType     String
+  size         Int
+  caption      String?
+  lang         String?
+  status       PhotoStatus @default(PENDING)
+  createdAt    DateTime    @default(now())
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  user     User?    @relation(fields: [userId], references: [id])
+
+  @@map("photos")
+}
+
+model Review {
+  id         String       @id @default(cuid())
+  businessId String
+  userId     String
+  rating     Int          // 1-5
+  title      String?
+  body       String?
+  lang       String       @default("en")
+  status     ReviewStatus @default(PENDING)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id])
+
+  @@unique([businessId, userId])
+  @@map("reviews")
+}
+
+model Bookmark {
+  userId     String
+  businessId String
+  createdAt  DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@id([userId, businessId])
+  @@map("bookmarks")
+}
+
+model Claim {
+  id                 String      @id @default(cuid())
+  businessId         String
+  claimantUserId     String
+  verificationStatus ClaimStatus @default(PENDING)
+  evidence           String?     // JSON string with verification evidence
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  claimant User     @relation(fields: [claimantUserId], references: [id])
+
+  @@map("claims")
+}
+
+enum BusinessStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum PhotoStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum ReviewStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum ClaimStatus {
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
+enum AttributeType {
+  STRING
+  BOOLEAN
+  NUMBER
+}

@@ -1,0 +1,7 @@
+cluster.name: phoenix-cn-directory
+network.host: 0.0.0.0
+bootstrap.memory_lock: false
+discovery.type: single-node
+plugins.security.disabled: true
+http.cors.enabled: true
+http.cors.allow-origin: "*"

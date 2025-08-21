@@ -1,0 +1,107 @@
+version: '3.8'
+
+services:
+  # PostgreSQL with PostGIS
+  postgres:
+    image: postgis/postgis:16-3.4
+    container_name: phoenix-postgres
+    environment:
+      POSTGRES_DB: phoenix_cn_directory
+      POSTGRES_USER: phoenix
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U phoenix -d phoenix_cn_directory"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # OpenSearch
+  opensearch:
+    image: opensearchproject/opensearch:2.11.0
+    container_name: phoenix-opensearch
+    environment:
+      - cluster.name=phoenix-cn-directory
+      - node.name=opensearch-node1
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "DISABLE_INSTALL_DEMO_CONFIG=true"
+      - "DISABLE_SECURITY_PLUGIN=true"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      - opensearch_data:/usr/share/opensearch/data
+      - ./docker/opensearch/opensearch.yml:/usr/share/opensearch/config/opensearch.yml
+    ports:
+      - "9200:9200"
+      - "9600:9600"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # OpenSearch Dashboards (optional)
+  opensearch-dashboards:
+    image: opensearchproject/opensearch-dashboards:2.11.0
+    container_name: phoenix-opensearch-dashboards
+    ports:
+      - "5601:5601"
+    expose:
+      - "5601"
+    environment:
+      OPENSEARCH_HOSTS: '["http://opensearch:9200"]'
+      DISABLE_SECURITY_DASHBOARDS_PLUGIN: "true"
+    depends_on:
+      - opensearch
+    profiles:
+      - dashboard
+
+  # MinIO (S3-compatible storage)
+  minio:
+    image: quay.io/minio/minio:RELEASE.2024-01-16T16-07-38Z
+    container_name: phoenix-minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: phoenix
+      MINIO_ROOT_PASSWORD: password123
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  # Redis (for caching)
+  redis:
+    image: redis:7-alpine
+    container_name: phoenix-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+  opensearch_data:
+  minio_data:
+  redis_data:
