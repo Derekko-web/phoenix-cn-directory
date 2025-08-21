@@ -1,5 +1,7 @@
 # Phoenix Chinese Directory
 
+Phoenix Chinese Directory - Full-stack bilingual business directory with authentication, built with NestJS and Next.js
+
 A bilingual (Chinese/English) local directory for the Phoenix metro area that helps users quickly discover Chinese businesses, services, events, and community resources.
 
 ## 🚀 Quick Start
@@ -13,7 +15,7 @@ A bilingual (Chinese/English) local directory for the Phoenix metro area that he
 
 1. **Clone the repository**
 ```bash
-git clone <repository-url>
+git clone https://github.com/Derekko-web/phoenix-cn-directory.git
 cd phoenix-cn-directory
 ```
 
@@ -72,6 +74,17 @@ When you run `pnpm docker:up`, the following services will be available:
 - **Search**: OpenSearch with Chinese/English analyzers
 - **Storage**: MinIO (S3-compatible)
 - **Cache**: Redis
+
+## ✨ Features
+
+- **Complete Authentication System**: JWT with refresh tokens + Google OAuth 2.0
+- **Bilingual Support**: Full English/Chinese internationalization
+- **User Management**: Registration, login, profile dashboard
+- **Business Directory**: CRUD operations for business listings
+- **Photo Management**: Upload and approval system
+- **Business Claims**: Verification workflow for business owners
+- **Search & Filters**: Advanced search with category and location filters
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
 
 ## 📁 Project Structure
 
@@ -164,6 +177,11 @@ The project includes GitHub Actions for CI/CD:
 
 - `GET /health` - Health check
 - `GET /v1/categories` - Get all categories
+- `POST /auth/register` - User registration
+- `POST /auth/login` - User login
+- `GET /auth/google` - Google OAuth login
+- `GET /profile` - Get user profile
+- `POST /claims` - Submit business claim
 
 ## 🛠️ Troubleshooting
 
@@ -181,16 +199,6 @@ Check if OpenSearch is running:
 ```bash
 curl http://localhost:9200/_cluster/health
 ```
-
-## 📚 Next Steps
-
-1. Implement search functionality with OpenSearch
-2. Add business listing CRUD operations
-3. Implement user authentication
-4. Add photo upload with MinIO
-5. Create admin dashboard
-6. Add review system
-7. Implement geospatial search
 
 ## 📄 License
 
